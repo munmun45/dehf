@@ -47,8 +47,8 @@
                             }
                     ?>
                     <div class="swiper-slide">
-                        <img class="lazyload" data-src="somaspanel/<?= htmlspecialchars($slide['image_path']) ?>"
-                            src="somaspanel/<?= htmlspecialchars($slide['image_path']) ?>" alt="<?= htmlspecialchars($slide['image_path']) ?>">
+                        <img class="lazyload"
+                            src="<?= htmlspecialchars($slide['image_path']) ?>" alt="<?= htmlspecialchars($slide['image_path']) ?>">
                         <div class="content-inner">
                             <div class="tf-container">
                                 <div class="row">
