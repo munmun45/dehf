@@ -199,24 +199,12 @@
         <div class="offcanvas-body inner-mobile-nav">
             <div class="mb-body">
                 <ul id="menu-mobile-menu">
-                    <li class="menu-item menu-item-has-children-mobile current-menu-item">
-                        <a href="#dropdown-menu-one" class="item-menu-mobile collapsed" data-bs-toggle="collapse"
-                            aria-expanded="true" aria-controls="dropdown-menu-one">
-                            Home
-                        </a>
-                        <div id="dropdown-menu-one" class="collapse" data-bs-parent="#menu-mobile-menu">
-                            <ul class="sub-mobile ">
-                                <li class="menu-item"><a href="index.html">Homepage 01</a></li>
-                                <li class="menu-item"><a href="home-02.html">Homepage 02</a></li>
-                                <li class="menu-item current-item "><a href="home-03.html">Homepage 03</a></li>
-                                <li class="menu-item"><a href="home-04.html">Homepage 04</a></li>
-                                <li class="menu-item"><a href="home-silde-text-scroll.html">Home silde text scroll</a>
-                                </li>
-                            </ul>
-                        </div>
+                    
+                    <li class="menu-item ">
+                        <a href="index.php" class="item-menu-mobile ">Home</a>
                     </li>
                     <li class="menu-item ">
-                        <a href="about.html" class="item-menu-mobile "> About</a>
+                        <a href="about.php" class="item-menu-mobile "> About</a>
                     </li>
                     <li class="menu-item menu-item-has-children-mobile">
                         <a href="#dropdown-menu-two" class="item-menu-mobile collapsed" data-bs-toggle="collapse"
@@ -226,68 +214,21 @@
                         <div id="dropdown-menu-two" class="collapse" data-bs-parent="#menu-mobile-menu">
                             <ul class="sub-mobile">
                                 <li class="menu-item">
-                                    <a href="our-service.html">Our Service</a>
+                                    <a href="service.php">Our Service</a>
                                 </li>
                                 <li class="menu-item">
-                                    <a href="service-details.html">Service Details</a>
+                                    <a href="service.php">Service Details</a>
                                 </li>
                             </ul>
                         </div>
                     </li>
+                    
                     <li class="menu-item ">
-                        <a href="our-therapists.html" class="item-menu-mobile "> Therapists</a>
+                        <a href="gallery.php" class="tem-menu-mobile "> Gallery</a>
                     </li>
-                    <li class="menu-item menu-item-has-children-mobile">
-                        <a href="#dropdown-menu-three" class="item-menu-mobile collapsed" data-bs-toggle="collapse"
-                            aria-expanded="true" aria-controls="dropdown-menu-three">
-                            Pages
-                        </a>
-                        <div id="dropdown-menu-three" class="collapse" data-bs-parent="#menu-mobile-menu">
-                            <ul class="sub-mobile">
-                                <li class="menu-item menu-item-has-children-mobile-2">
-                                    <a href="#sub-product-one" class="item-menu-mobile  collapsed"
-                                        data-bs-toggle="collapse" aria-expanded="true"
-                                        aria-controls="sub-product-one">Shop</a>
-                                    <div id="sub-product-one" class="collapse">
-                                        <ul class="sub-mobile">
-                                            <li class="menu-item ">
-                                                <a href="our-product.html" class="item-menu-mobile "> Shop
-                                                    Product</a>
-                                            </li>
-                                            <li class="menu-item ">
-                                                <a href="shop-cart.html" class="item-menu-mobile "> Shop Cart</a>
-                                            </li>
-                                            <li class="menu-item ">
-                                                <a href="shop-check-out.html" class="item-menu-mobile "> Check
-                                                    Out</a>
-                                            </li>
-                                            <li class="menu-item ">
-                                                <a href="product-details.html" class="item-menu-mobile "> Shop
-                                                    Details</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-
-                                <li class="menu-item"><a href="book-appointment.html">Appointment</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="menu-item menu-item-has-children-mobile">
-                        <a href="#dropdown-menu-four" class="item-menu-mobile collapsed" data-bs-toggle="collapse"
-                            aria-expanded="true" aria-controls="dropdown-menu-four">
-                            Blogs
-                        </a>
-                        <div id="dropdown-menu-four" class="collapse" data-bs-parent="#menu-mobile-menu">
-                            <ul class="sub-mobile ">
-                                <li class="menu-item"><a href="blog-grid.html">Blog Grid</a></li>
-                                <li class="menu-item"><a href="blog-details.html">Blog Details 1</a></li>
-                                <li class="menu-item"><a href="blog-details-2.html">Blog Details 2</a></li>
-                            </ul>
-                        </div>
-                    </li>
+                    
                     <li class="menu-item ">
-                        <a href="contact-us.html" class="tem-menu-mobile "> Contact</a>
+                        <a href="contact.php" class="tem-menu-mobile "> Contact</a>
                     </li>
                 </ul>
                 <div class="support">
