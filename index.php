@@ -76,38 +76,7 @@
                     </div>
                     <?php 
                         endwhile;
-                    else:
-                        // Fallback slider if no database entries
-                    ?>
-                    <div class="swiper-slide">
-                        <img class="lazyload" data-src="images/page-title/page-title-home-3.1.jpg"
-                            src="images/page-title/page-title-home-3.1.jpg" alt="Discover Your Past Life Journey">
-                        <div class="content-inner">
-                            <div class="tf-container">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="wrap-content">
-                                            <div class="heading fade-item fade-item1">
-                                                <h2 class="title text-white">Discover Your Past Life Journey</h2>
-                                                <p class="description text-white fade-item fade-item2">
-                                                    Our specialized past life astrology readings offer profound insights
-                                                    into your soul's journey, helping you understand karmic patterns
-                                                    and unlock your spiritual potential for healing and growth.
-                                                </p>
-                                            </div>
-                                            <div class="fade-item fade-item3">
-                                                <a class="tf-btn style-default btn-color-secondary pd-28"
-                                                    href="contact.php">
-                                                    <span>Book a Consultation <i class="icon-ArrowRight arr-1"></i></span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <?php endif; ?>
+                     endif; ?>
                 </div>
             </div>
             <div class="swiper-pagination pagination-page-title-home"></div>
