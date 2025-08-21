@@ -183,7 +183,7 @@
         const row = `
           <tr>
             <td>
-              <img src="./${slider.image_path}" alt="${slider.title}" style="width: 80px; height: 50px; object-fit: cover;" onerror="this.src='../images/item/favicon.png'">
+              <img src="https://dehf.in/${slider.image_path}" alt="${slider.title}" style="width: 80px; height: 50px; object-fit: cover;" onerror="this.src='../images/item/favicon.png'">
             </td>
             <td>${slider.title}</td>
             <td>${slider.description ? slider.description.substring(0, 50) + '...' : ''}</td>
