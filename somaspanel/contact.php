@@ -1,26 +1,70 @@
 <?php
 require('./config/config.php');
 
+// Ensure contact_info table exists
+$create_table_query = "CREATE TABLE IF NOT EXISTS `contact_info` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) NOT NULL,
+  `phone` varchar(50) NOT NULL,
+  `address` text NOT NULL,
+  `map_embed_url` text,
+  `consultation_title` varchar(255) DEFAULT 'Free Consultation - Begin Your Healing Journey',
+  `consultation_subtitle` varchar(255) DEFAULT 'Why Choose Us',
+  `consultation_description` text,
+  `status` enum('active','inactive') DEFAULT 'active',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4";
+
+$conn->query($create_table_query);
+
 // Handle form submissions
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['action'])) {
         switch ($_POST['action']) {
             case 'update_contact':
-                $email = $_POST['email'];
-                $phone = $_POST['phone'];
-                $address = $_POST['address'];
-                $map_embed_url = $_POST['map_embed_url'];
-                $consultation_title = $_POST['consultation_title'];
-                $consultation_subtitle = $_POST['consultation_subtitle'];
-                $consultation_description = $_POST['consultation_description'];
-                
-                $stmt = $conn->prepare("UPDATE contact_info SET email = ?, phone = ?, address = ?, map_embed_url = ?, consultation_title = ?, consultation_subtitle = ?, consultation_description = ? WHERE id = 1");
-                $stmt->bind_param("sssssss", $email, $phone, $address, $map_embed_url, $consultation_title, $consultation_subtitle, $consultation_description);
-                
-                if ($stmt->execute()) {
-                    $success_message = "Contact information updated successfully!";
-                } else {
-                    $error_message = "Error updating contact information.";
+                try {
+                    // Sanitize and validate input
+                    $email = trim($_POST['email']);
+                    $phone = trim($_POST['phone']);
+                    $address = trim($_POST['address']);
+                    $map_embed_url = trim($_POST['map_embed_url']);
+                    $consultation_title = trim($_POST['consultation_title']);
+                    $consultation_subtitle = trim($_POST['consultation_subtitle']);
+                    $consultation_description = trim($_POST['consultation_description']);
+                    
+                    // Validate email
+                    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                        throw new Exception("Invalid email format");
+                    }
+                    
+                    // Check if record exists, if not insert it
+                    $check_stmt = $conn->prepare("SELECT id FROM contact_info WHERE id = 1");
+                    $check_stmt->execute();
+                    $result = $check_stmt->get_result();
+                    
+                    if ($result->num_rows > 0) {
+                        // Update existing record
+                        $stmt = $conn->prepare("UPDATE contact_info SET email = ?, phone = ?, address = ?, map_embed_url = ?, consultation_title = ?, consultation_subtitle = ?, consultation_description = ?, updated_at = CURRENT_TIMESTAMP WHERE id = 1");
+                        $stmt->bind_param("sssssss", $email, $phone, $address, $map_embed_url, $consultation_title, $consultation_subtitle, $consultation_description);
+                    } else {
+                        // Insert new record
+                        $stmt = $conn->prepare("INSERT INTO contact_info (id, email, phone, address, map_embed_url, consultation_title, consultation_subtitle, consultation_description) VALUES (1, ?, ?, ?, ?, ?, ?, ?)");
+                        $stmt->bind_param("sssssss", $email, $phone, $address, $map_embed_url, $consultation_title, $consultation_subtitle, $consultation_description);
+                    }
+                    
+                    if ($stmt->execute()) {
+                        $success_message = "Contact information updated successfully!";
+                    } else {
+                        throw new Exception("Database error: " . $stmt->error);
+                    }
+                    
+                    $stmt->close();
+                    $check_stmt->close();
+                    
+                } catch (Exception $e) {
+                    $error_message = "Error updating contact information: " . $e->getMessage();
                 }
                 break;
                 
@@ -29,9 +73,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // Fetch contact information
-$contact_query = "SELECT * FROM contact_info WHERE id = 1";
-$contact_result = $conn->query($contact_query);
-$contact_info = $contact_result->fetch_assoc();
+try {
+    $contact_query = "SELECT * FROM contact_info WHERE id = 1";
+    $contact_result = $conn->query($contact_query);
+    
+    if ($contact_result && $contact_result->num_rows > 0) {
+        $contact_info = $contact_result->fetch_assoc();
+    } else {
+        // Initialize with default values if no record exists
+        $contact_info = [
+            'email' => '',
+            'phone' => '',
+            'address' => '',
+            'map_embed_url' => '',
+            'consultation_title' => 'Free Consultation - Begin Your Healing Journey',
+            'consultation_subtitle' => 'Why Choose Us',
+            'consultation_description' => ''
+        ];
+    }
+} catch (Exception $e) {
+    $error_message = "Error fetching contact information: " . $e->getMessage();
+    $contact_info = [
+        'email' => '',
+        'phone' => '',
+        'address' => '',
+        'map_embed_url' => '',
+        'consultation_title' => '',
+        'consultation_subtitle' => '',
+        'consultation_description' => ''
+    ];
+}
 
 ?>
 

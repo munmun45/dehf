@@ -197,7 +197,7 @@ function deleteSlider() {
 }
 
 function handleImageUpload($file) {
-    $target_dir = "./images/slider/";
+    $target_dir = "../images/slider/";
     
     // Create directory if it doesn't exist
     if (!file_exists($target_dir)) {

@@ -128,7 +128,7 @@ $contact_info = $contact_result->fetch_assoc();
 
 <div id="map-section">
     <?php if (!empty($contact_info['map_embed_url'])): ?>
-        <iframe src="<?= htmlspecialchars($contact_info['map_embed_url']) ?>" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <?= $contact_info['map_embed_url'] ?>
     <?php else: ?>
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6563971.11637624!2d79.14157762376357!3d20.110719594755135!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a226aece9af3bfd%3A0x133625caa9cea81f!2sOdisha!5e1!3m2!1sen!2sin!4v1755761695025!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     <?php endif; ?>
