@@ -32,10 +32,10 @@
             <div class="tf-container">
                 <div class="row">
                     <div class="col-12">
-                        <h3 class="title">Blog Post</h3>
+                        <h3 class="title">Gallery</h3>
                         <ul class="breadcrumbs">
-                            <li><a href="index.html">Home</a></li>
-                            <li>Blogs</li>
+                            <li><a href="index.php">Home</a></li>
+                            <li>Gallery</li>
                         </ul>
                     </div>
                 </div>
@@ -46,236 +46,70 @@
         <!-- .main-content -->
         <div class="main-content page-blog">
 
+            <?php
+            // Include database connection
+            include './somaspanel/config/config.php';
+            ?>
+            
             <!-- .section-blog-grid -->
             <section class="section-blog-grid">
                 <div class="tf-container">
                     <div class="row">
                         <div class="col-12">
                             <div class="grid-layout-3">
-                                <div class="article-blog-item  hover-img ">
+                                <?php
+                                // Fetch gallery images from database
+                                $gallery_query = "SELECT * FROM gallery WHERE status = 'active' ORDER BY sort_order ASC, created_at DESC";
+                                $gallery_result = $conn->query($gallery_query);
+                                
+                                if ($gallery_result->num_rows > 0):
+                                    while($gallery_item = $gallery_result->fetch_assoc()):
+                                        $created_date = new DateTime($gallery_item['created_at']);
+                                ?>
+                                <div class="article-blog-item hover-img">
                                     <div class="image-wrap">
-                                        <a href="blog-details.html">
-
-                                            <img class="lazyload" data-src="images/blog/blog-1.jpg"
-                                                src="images/blog/blog-1.jpg" alt="">
+                                        <a href="somaspanel/<?= htmlspecialchars($gallery_item['image_path']) ?>" data-lightbox="gallery" data-title="<?= htmlspecialchars($gallery_item['title']) ?>">
+                                            <img class="lazyload" 
+                                                 data-src="somaspanel/<?= htmlspecialchars($gallery_item['image_path']) ?>"
+                                                 src="somaspanel/<?= htmlspecialchars($gallery_item['image_path']) ?>" 
+                                                 alt="<?= htmlspecialchars($gallery_item['title']) ?>">
                                         </a>
                                         <div class="date-time">
                                             <div class="content">
-                                                <p class="entry-day ">12</p>
-                                                <p class="entry-month fw-book">SEP</p>
+                                                <p class="entry-day"><?= $created_date->format('d') ?></p>
+                                                <p class="entry-month fw-book"><?= $created_date->format('M') ?></p>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="content">
-                                        <p class="sub">Therapy</p>
-                                        <h5 class="title"><a href="blog-details.html">Mindfulness For Better Mental
-                                                Health: Simple Practices for Daily Peace
+                                        <p class="sub"><?= ucfirst(htmlspecialchars($gallery_item['category'])) ?></p>
+                                        <h5 class="title">
+                                            <a href="somaspanel/<?= htmlspecialchars($gallery_item['image_path']) ?>" data-lightbox="gallery">
+                                                <?= htmlspecialchars($gallery_item['title']) ?>
                                             </a>
                                         </h5>
-                                        <p>Learn how mindfulness techniques can reduce stress and improve your mental
-                                            well-being daily.</p>
+                                        <?php if (!empty($gallery_item['description'])): ?>
+                                            <p><?= htmlspecialchars($gallery_item['description']) ?></p>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
-                                <div class="article-blog-item  hover-img ">
-                                    <div class="image-wrap">
-                                        <a href="blog-details.html">
-
-                                            <img class="lazyload" data-src="images/blog/blog-2.jpg"
-                                                src="images/blog/blog-2.jpg" alt="">
-                                        </a>
-                                        <div class="date-time">
-                                            <div class="content">
-                                                <p class="entry-day ">19</p>
-                                                <p class="entry-month fw-book">SEP</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="content">
-                                        <p class="sub">Emotional Healing</p>
-                                        <h5 class="title"><a href="blog-details.html">Strengthening Relationships
-                                                Through Communication
-                                            </a>
-                                        </h5>
-                                        <p>Explore how family therapy fosters better communication, resolves conflicts,
-                                            and builds healthier family dynamics.</p>
-                                    </div>
+                                <?php 
+                                    endwhile;
+                                else:
+                                ?>
+                                <div class="col-12 text-center">
+                                    <p>No gallery images available at the moment.</p>
                                 </div>
-                                <div class="article-blog-item  hover-img ">
-                                    <div class="image-wrap">
-                                        <a href="blog-details.html">
-                                            <img class="lazyload" data-src="images/blog/blog-3.jpg"
-                                                src="images/blog/blog-3.jpg" alt="">
-
-                                        </a>
-                                        <div class="date-time">
-                                            <div class="content">
-                                                <p class="entry-day ">14</p>
-                                                <p class="entry-month fw-book">SEP</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="content">
-                                        <p class="sub">Wellness</p>
-                                        <h5 class="title"><a href="blog-details.html">Self-Care for Emotional
-                                                Well-being: Key Steps to Feeling Balanced
-                                            </a>
-                                        </h5>
-                                        <p>Explore how CBT techniques help manage stress and build resilience for a
-                                            calmer life.</p>
-                                    </div>
-                                </div>
-                                <div class="article-blog-item  hover-img ">
-                                    <div class="image-wrap">
-                                        <a href="blog-details.html">
-                                            <img class="lazyload" data-src="images/blog/blog-4.jpg"
-                                                src="images/blog/blog-4.jpg" alt="">
-
-                                        </a>
-                                        <div class="date-time">
-                                            <div class="content">
-                                                <p class="entry-day ">18</p>
-                                                <p class="entry-month fw-book">SEP</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="content">
-                                        <p class="sub">Wellness</p>
-                                        <h5 class="title"><a href="blog-details.html">How Therapy Helps with Trauma:
-                                                Pathways to Long-Term Healing
-                                            </a>
-                                        </h5>
-                                        <p>Find out how therapy can guide you through trauma recovery and foster
-                                            long-term healing.</p>
-                                    </div>
-                                </div>
-                                <div class="article-blog-item  hover-img ">
-                                    <div class="image-wrap">
-                                        <a href="blog-details.html">
-                                            <img class="lazyload" data-src="images/blog/blog-5.jpg"
-                                                src="images/blog/blog-5.jpg" alt="">
-
-                                        </a>
-                                        <div class="date-time">
-                                            <div class="content">
-                                                <p class="entry-day ">24</p>
-                                                <p class="entry-month fw-book">SEP</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="content">
-                                        <p class="sub">Stress Management</p>
-                                        <h5 class="title"><a href="blog-details.html">The Benefits of Cognitive
-                                                Behavioral Therapy for Anxiety Relief
-                                            </a>
-                                        </h5>
-                                        <p>Discover how CBT helps individuals identify and change negative thought
-                                            patterns to manage anxiety effectively.</p>
-                                    </div>
-                                </div>
-                                <div class="article-blog-item  hover-img ">
-                                    <div class="image-wrap">
-                                        <a href="blog-details.html">
-
-                                            <img class="lazyload" data-src="images/blog/blog-6.jpg"
-                                                src="images/blog/blog-6.jpg" alt="">
-                                        </a>
-                                        <div class="date-time">
-                                            <div class="content">
-                                                <p class="entry-day ">25</p>
-                                                <p class="entry-month fw-book">SEP</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="content">
-                                        <p class="sub">Anxiety Relief</p>
-                                        <h5 class="title"><a href="blog-details.html">How Therapy Can Help with
-                                                Overcoming Trauma
-                                            </a>
-                                        </h5>
-                                        <p>Understand the role of therapy in helping individuals process traumatic
-                                            experiences and regain...</p>
-                                    </div>
-                                </div>
-                                <div class="article-blog-item  hover-img ">
-                                    <div class="image-wrap">
-                                        <a href="blog-details.html">
-
-                                            <img class="lazyload" data-src="images/blog/blog-7.jpg"
-                                                src="images/blog/blog-7.jpg" alt="">
-                                        </a>
-                                        <div class="date-time">
-                                            <div class="content">
-                                                <p class="entry-day ">27</p>
-                                                <p class="entry-month fw-book">SEP</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="content">
-                                        <p class="sub">Personal Growth</p>
-                                        <h5 class="title"><a href="blog-details.html">The Role of Therapy in Managing
-                                                Stress and Burnout
-                                            </a>
-                                        </h5>
-                                        <p>Learn how therapy can equip you with strategies to manage stress and avoid
-                                            burnout in your personal...</p>
-                                    </div>
-                                </div>
-                                <div class="article-blog-item  hover-img ">
-                                    <div class="image-wrap">
-                                        <a href="blog-details.html">
-
-                                            <img class="lazyload" data-src="images/blog/blog-8.jpg"
-                                                src="images/blog/blog-8.jpg" alt="">
-                                        </a>
-                                        <div class="date-time">
-                                            <div class="content">
-                                                <p class="entry-day ">28</p>
-                                                <p class="entry-month fw-book">SEP</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="content">
-                                        <p class="sub">Trauma Recovery</p>
-                                        <h5 class="title"><a href="blog-details.html">Individual Counseling: A
-                                                Personalized Approach to Mental Wellness
-                                            </a>
-                                        </h5>
-                                        <p>Find out how individual counseling provides tailored solutions to help you
-                                            achieve mental clarity...</p>
-                                    </div>
-                                </div>
-                                <div class="article-blog-item  hover-img ">
-                                    <div class="image-wrap">
-                                        <a href="blog-details.html">
-
-                                            <img class="lazyload" data-src="images/blog/blog-1.jpg"
-                                                src="images/blog/blog-1.jpg" alt="">
-                                        </a>
-                                        <div class="date-time">
-                                            <div class="content">
-                                                <p class="entry-day ">22</p>
-                                                <p class="entry-month fw-book">SEP</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="content">
-                                        <p class="sub">Mental Wellness</p>
-                                        <h5 class="title"><a href="blog-details.html">Mindfulness For Better Mental
-                                                Health: Simple Practices for Daily Peace
-                                            </a>
-                                        </h5>
-                                        <p>Learn how mindfulness techniques can reduce stress and improve your mental
-                                            well-being daily.</p>
-                                    </div>
-                                </div>
-
+                                <?php endif; ?>
                             </div>
+                            <?php if ($gallery_result->num_rows > 12): ?>
                             <ul class="wg-pagination">
                                 <li class="active">1</li>
                                 <li><a href="#">2</a></li>
                                 <li><a href="#">3</a></li>
                                 <li><a href="#"><i class="icon-CaretRight"></i></a></li>
                             </ul>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>

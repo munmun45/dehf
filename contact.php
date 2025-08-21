@@ -1,12 +1,18 @@
+<?php
+// Include database connection
+require('./somaspanel/config/config.php');
+
+// Fetch contact information
+$contact_query = "SELECT * FROM contact_info WHERE status = 'active' ORDER BY id DESC LIMIT 1";
+$contact_result = $conn->query($contact_query);
+$contact_info = $contact_result->fetch_assoc();
+?>
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
 
 <head>
-
-
     <?php require("./config/meta.php"); ?>
-
-
 </head>
 
 <body>
@@ -53,26 +59,21 @@
                             <div class="wrap-content">
                                 <div class="box-contact">
                                     <div class="heading-section text-start">
-                                        <p class="text-2 sub">Why Choose Us</p>
-                                        <h3>Free Consultation - Begin Your Healing Journey</h3>
-                                        <p class="description text-1 lh-30">Connect with a dedicated specialist today
-                                            and
-                                            take the first step towards a healthier, more fulfilling life.
-                                        </p>
+                                        <p class="text-2 sub"><?= htmlspecialchars($contact_info['consultation_subtitle'] ?? 'Why Choose Us') ?></p>
+                                        <h3><?= htmlspecialchars($contact_info['consultation_title'] ?? 'Free Consultation - Begin Your Healing Journey') ?></h3>
+                                        <p class="description text-1 lh-30"><?= htmlspecialchars($contact_info['consultation_description'] ?? 'Connect with a dedicated specialist today and take the first step towards a healthier, more fulfilling life.') ?></p>
                                     </div>
                                     <ul class="list-info">
-                                        <li><i class="icon-Envelope"></i> <a href="#">themesflat@gmail.com</a></li>
-                                        <li><i class="icon-PhoneCall"></i>1-333-345-6868</li>
-                                        <li><i class="icon-MapPin"></i>101 E 129th St, East Chicago, IN 46312, US
-                                        </li>
+                                        <li><i class="icon-Envelope"></i> <a href="mailto:<?= htmlspecialchars($contact_info['email'] ?? 'themesflat@gmail.com') ?>"><?= htmlspecialchars($contact_info['email'] ?? 'themesflat@gmail.com') ?></a></li>
+                                        <li><i class="icon-PhoneCall"></i><?= htmlspecialchars($contact_info['phone'] ?? '1-333-345-6868') ?></li>
+                                        <li><i class="icon-MapPin"></i><?= htmlspecialchars($contact_info['address'] ?? '101 E 129th St, East Chicago, IN 46312, US') ?></li>
                                     </ul>
-                                    <a href="#" class="tf-btn-link z-5">
+                                    <a href="#map-section" class="tf-btn-link z-5">
                                         <span data-text="Open map">Open map</span>
                                         <i class="icon-ArrowRight"></i>
                                     </a>
                                 </div>
-                                <form class="form-consultation" method="post" id="contactform"
-                                    action="https://themesflat.co/html/healingy/contact/contact-process.php">
+                                <form class="form-consultation" method="post" id="contactform">
                                     <h4 class="mb-20 text-center">Get A Free Consultation</h4>
                                     <fieldset class="name">
                                         <input type="text" name="name" class="tf-input style-1" placeholder="Your Name*"
@@ -125,7 +126,13 @@
     </div><!-- /.wrapper -->
 
 
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6563971.11637624!2d79.14157762376357!3d20.110719594755135!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a226aece9af3bfd%3A0x133625caa9cea81f!2sOdisha!5e1!3m2!1sen!2sin!4v1755761695025!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+<div id="map-section">
+    <?php if (!empty($contact_info['map_embed_url'])): ?>
+        <iframe src="<?= htmlspecialchars($contact_info['map_embed_url']) ?>" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <?php else: ?>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6563971.11637624!2d79.14157762376357!3d20.110719594755135!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a226aece9af3bfd%3A0x133625caa9cea81f!2sOdisha!5e1!3m2!1sen!2sin!4v1755761695025!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <?php endif; ?>
+</div>
 
 
 
@@ -149,18 +156,45 @@
     <?php require("./config/footer.php") ?>
 
 
-
-
-
-
-
-
-
-
-
-
+    <script>
+    document.getElementById('contactform').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const formData = new FormData(this);
+        const submitBtn = this.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        
+        // Show loading state
+        submitBtn.innerHTML = '<span>Submitting...</span>';
+        submitBtn.disabled = true;
+        
+        fetch('./somaspanel/process/contact_form.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Show success message
+                alert(data.message);
+                this.reset();
+            } else {
+                // Show error message
+                alert(data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred. Please try again.');
+        })
+        .finally(() => {
+            // Restore button state
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        });
+    });
+    </script>
 
 </body>
-
 
 </html>
