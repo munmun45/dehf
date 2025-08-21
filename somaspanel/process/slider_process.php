@@ -75,7 +75,17 @@ function createSlider() {
     
     // Handle image upload
     $image_path = '';
-    if (isset($_FILES['slider_image']) && $_FILES['slider_image']['error'] === UPLOAD_ERR_OK) {
+    
+    // Check for cropped image data first
+    if (isset($_POST['cropped_image']) && !empty($_POST['cropped_image'])) {
+        $image_path = handleCroppedImageUpload($_POST['cropped_image']);
+        if (!$image_path) {
+            echo json_encode(['success' => false, 'message' => 'Failed to process cropped image']);
+            return;
+        }
+    } 
+    // Fallback to regular file upload
+    else if (isset($_FILES['slider_image']) && $_FILES['slider_image']['error'] === UPLOAD_ERR_OK) {
         $image_path = handleImageUpload($_FILES['slider_image']);
         if (!$image_path) {
             echo json_encode(['success' => false, 'message' => 'Failed to upload image']);
@@ -122,7 +132,20 @@ function updateSlider() {
     
     // Handle image upload (optional for update)
     $image_path = null;
-    if (isset($_FILES['slider_image']) && $_FILES['slider_image']['error'] === UPLOAD_ERR_OK) {
+    
+    // Check for cropped image data first
+    if (isset($_POST['cropped_image']) && !empty($_POST['cropped_image'])) {
+        $image_path = handleCroppedImageUpload($_POST['cropped_image']);
+        if (!$image_path) {
+            echo json_encode(['success' => false, 'message' => 'Failed to process cropped image']);
+            return;
+        }
+        
+        // Delete old image
+        deleteOldImage($id);
+    } 
+    // Fallback to regular file upload
+    else if (isset($_FILES['slider_image']) && $_FILES['slider_image']['error'] === UPLOAD_ERR_OK) {
         $image_path = handleImageUpload($_FILES['slider_image']);
         if (!$image_path) {
             echo json_encode(['success' => false, 'message' => 'Failed to upload image']);
@@ -130,17 +153,7 @@ function updateSlider() {
         }
         
         // Delete old image
-        $old_stmt = $conn->prepare("SELECT image_path FROM slider WHERE id = ?");
-        $old_stmt->bind_param("i", $id);
-        $old_stmt->execute();
-        $old_result = $old_stmt->get_result();
-        if ($old_result->num_rows > 0) {
-            $old_row = $old_result->fetch_assoc();
-            $old_image_path = '../' . $old_row['image_path'];
-            if (file_exists($old_image_path)) {
-                unlink($old_image_path);
-            }
-        }
+        deleteOldImage($id);
     }
     
     // Update database
@@ -220,6 +233,60 @@ function handleImageUpload($file) {
     }
     
     return false;
+}
+
+function handleCroppedImageUpload($base64_data) {
+    $target_dir = "../images/slider/";
+    
+    // Create directory if it doesn't exist
+    if (!file_exists($target_dir)) {
+        mkdir($target_dir, 0777, true);
+    }
+    
+    // Extract the image data from base64
+    if (preg_match('/^data:image\/(\w+);base64,/', $base64_data, $type)) {
+        $data = substr($base64_data, strpos($base64_data, ',') + 1);
+        $type = strtolower($type[1]); // jpg, png, gif, etc.
+        
+        // Validate image type
+        $allowed_types = array('jpg', 'jpeg', 'png', 'gif', 'webp');
+        if (!in_array($type, $allowed_types)) {
+            return false;
+        }
+        
+        $data = base64_decode($data);
+        
+        if ($data === false) {
+            return false;
+        }
+        
+        // Generate unique filename
+        $new_filename = uniqid() . '_' . time() . '.' . ($type === 'jpeg' ? 'jpg' : $type);
+        $target_file = $target_dir . $new_filename;
+        
+        if (file_put_contents($target_file, $data)) {
+            return "somaspanel/images/slider/" . $new_filename;
+        }
+    }
+    
+    return false;
+}
+
+function deleteOldImage($slider_id) {
+    global $conn;
+    
+    $old_stmt = $conn->prepare("SELECT image_path FROM slider WHERE id = ?");
+    $old_stmt->bind_param("i", $slider_id);
+    $old_stmt->execute();
+    $old_result = $old_stmt->get_result();
+    
+    if ($old_result->num_rows > 0) {
+        $old_row = $old_result->fetch_assoc();
+        $old_image_path = '../' . $old_row['image_path'];
+        if (file_exists($old_image_path)) {
+            unlink($old_image_path);
+        }
+    }
 }
 
 $conn->close();
