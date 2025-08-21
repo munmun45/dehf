@@ -39,11 +39,11 @@
 
 
                                 <li>
-                                    <a href="contact-us.html">Home</a>
+                                    <a href="index.php">Home</a>
                                 </li>
 
                                 <li>
-                                    <a href="contact-us.html">About</a>
+                                    <a href="about.php">About</a>
                                 </li>
 
 
@@ -59,63 +59,53 @@
                                                             </h5>
                                                             <div class="wrap-service">
 
-                                                                <div class="service-item-list">
-                                                                    <h6><a href="service-details.html">Family
-                                                                            Therapy</a></h6>
+                                                                <a class="service-item-list" href="./service.php">
+                                                                    <h6>Family
+                                                                            Therapy</h6>
                                                                     <p class="text-2">
                                                                         Improve family relationships, resolve
                                                                         conflicts, and build a healthy living
                                                                         environment.
                                                                     </p>
-                                                                </div>
-                                                                <div class="service-item-list">
-                                                                    <h6><a href="service-details.html">Child &
-                                                                            Adolescent
-                                                                            Therapy</a></h6>
+                                                                </a>
+                                                                
+
+                                                                <a class="service-item-list" href="./service.php">
+                                                                    <h6>Family
+                                                                            Therapy</h6>
                                                                     <p class="text-2">
-                                                                        Specialized support for children and
-                                                                        teens, helping them navigate emotional
-                                                                        challenges.
+                                                                        Improve family relationships, resolve
+                                                                        conflicts, and build a healthy living
+                                                                        environment.
                                                                     </p>
-                                                                </div>
-                                                                <div class="service-item-list">
-                                                                    <h6><a href="service-details.html">Group
-                                                                            Therapy</a>
-                                                                    </h6>
+                                                                </a>
+                                                                
+                                                                <a class="service-item-list" href="./service.php">
+                                                                    <h6>Family
+                                                                            Therapy</h6>
                                                                     <p class="text-2">
-                                                                        Join others with similar challenges,
-                                                                        sharing experiences and support in a
-                                                                        guided group setting.
+                                                                        Improve family relationships, resolve
+                                                                        conflicts, and build a healthy living
+                                                                        environment.
                                                                     </p>
-                                                                </div>
-                                                                <div class="service-item-list">
-                                                                    <h6><a href="service-details.html">Couples
-                                                                            Therapy</a></h6>
+                                                                </a>
+                                                                
+                                                                <a class="service-item-list" href="./service.php">
+                                                                    <h6>Family
+                                                                            Therapy</h6>
                                                                     <p class="text-2">
-                                                                        Enhance understanding affection between
-                                                                        couples, helping to strengthen the
-                                                                        relationship.
+                                                                        Improve family relationships, resolve
+                                                                        conflicts, and build a healthy living
+                                                                        environment.
                                                                     </p>
-                                                                </div>
-                                                                <div class="service-item-list">
-                                                                    <h6><a href="service-details.html">Trauma
-                                                                            Counseling</a></h6>
-                                                                    <p class="text-2">
-                                                                        Focused therapy to help you heal from
-                                                                        past trauma and regain control over your
-                                                                        life.
-                                                                    </p>
-                                                                </div>
-                                                                <div class="service-item-list">
-                                                                    <h6><a href="service-details.html">Individual
-                                                                            Counseling</a>
-                                                                    </h6>
-                                                                    <p class="text-2">
-                                                                        Personal psychological support to help
-                                                                        you overcome stress, anxiety, and regain
-                                                                        confidence.
-                                                                    </p>
-                                                                </div>
+                                                                </a>
+                                                                
+
+                                                             
+
+
+
+
                                                             </div>
                                                         </div>
                                                         
@@ -130,11 +120,11 @@
                                 
                                 
                                 <li>
-                                    <a href="contact-us.html">Gallery</a>
+                                    <a href="./gallery.php">Gallery</a>
                                 </li>
 
                                 <li>
-                                    <a href="contact-us.html">Contact</a>
+                                    <a href="contact.php">Contact</a>
                                 </li>
                             </ul>
                         </nav>
@@ -180,7 +170,7 @@
                             </div>
                             <div class="btn-get">
                                 <a class="tf-btn style-default btn-color-secondary pd-40"
-                                    href="book-appointment.html">
+                                    href="./appointment.php">
                                     <span>
                                         Get Your Consult!
                                     </span>

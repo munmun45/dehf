@@ -6199,10 +6199,10 @@ input[value=theme-dark] + label {
 /*page-title
 ------------------------------------------------------------------------------*/
 .page-title {
-  text-align: center;
-  padding-top: 65px;
-  padding-bottom: 65px;
-  background-color: var(--Color-1);
+      text-align: center;
+    padding-top: 145px;
+    padding-bottom: 65px;
+    background-color: #8c8c8c;
 }
 .page-title .title {
   margin-bottom: 12px;
