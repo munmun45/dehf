@@ -132,13 +132,13 @@
               <div class="mb-3">
                 <label for="sliderImage" class="form-label">Slider Image</label>
                 <input type="file" class="form-control" id="sliderImage" name="slider_image" accept="image/*">
-                <small class="text-muted">Select an image to crop it to 19:6 ratio (recommended size: 1900x600px)</small>
+                <small class="text-muted">Select an image to crop it to 14:6 ratio (recommended size: 1900x600px)</small>
               </div>
 
               <!-- Image Cropper Container -->
               <div id="cropperContainer" style="display: none;">
                 <div class="mb-3">
-                  <label class="form-label">Crop Image (19:6 Ratio)</label>
+                  <label class="form-label">Crop Image (14:6 Ratio)</label>
                   <div class="crop-container">
                     <img id="cropImage" style="max-width: 100%; height: auto;">
                   </div>
@@ -232,7 +232,7 @@
         }
         
         cropper = new Cropper(cropImage, {
-          aspectRatio: 19 / 6, // 19:6 ratio
+          aspectRatio: 14 / 6, // 14:6 ratio
           viewMode: 1,
           dragMode: 'move',
           autoCropArea: 1,
@@ -250,8 +250,8 @@
       cropButton.addEventListener('click', function() {
         if (cropper) {
           const canvas = cropper.getCroppedCanvas({
-            width: 1900,  // Recommended width
-            height: 600,  // Recommended height (maintains 19:6 ratio)
+            width: 1400,  // Recommended width
+            height: 600,  // Recommended height (maintains 14:6 ratio)
             imageSmoothingEnabled: true,
             imageSmoothingQuality: 'high',
           });
