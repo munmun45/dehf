@@ -23,17 +23,72 @@
         <div class="page-title-homepage-3">
             <div class="swiper-container slide-effect-fade slider-page-title-home">
                 <div class="swiper-wrapper">
+                    <?php
+                    // Fetch active slider images from database
+                    $slider_query = "SELECT * FROM slider WHERE status = 'active' ORDER BY sort_order ASC, created_at ASC";
+                    $slider_result = $conn->query($slider_query);
+                    
+                    if ($slider_result && $slider_result->num_rows > 0):
+                        while($slide = $slider_result->fetch_assoc()):
+                            // Determine content alignment classes
+                            $alignment_class = '';
+                            $wrap_class = 'wrap-content';
+                            
+                            switch($slide['text_alignment']) {
+                                case 'center':
+                                    $alignment_class = 'mx-auto text-center';
+                                    break;
+                                case 'right':
+                                    $alignment_class = 'ml-auto text-end';
+                                    break;
+                                default: // left
+                                    $alignment_class = '';
+                                    break;
+                            }
+                    ?>
+                    <div class="swiper-slide">
+                        <img class="lazyload" data-src="somaspanel/<?= htmlspecialchars($slide['image_path']) ?>"
+                            src="somaspanel/<?= htmlspecialchars($slide['image_path']) ?>" alt="<?= htmlspecialchars($slide['title']) ?>">
+                        <div class="content-inner">
+                            <div class="tf-container">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="<?= $wrap_class ?> <?= $alignment_class ?>">
+                                            <div class="heading fade-item fade-item1">
+                                                <h2 class="title text-white"><?= htmlspecialchars($slide['title']) ?></h2>
+                                                <?php if (!empty($slide['description'])): ?>
+                                                <p class="description text-white fade-item fade-item2">
+                                                    <?= htmlspecialchars($slide['description']) ?>
+                                                </p>
+                                                <?php endif; ?>
+                                            </div>
+                                            <div class="fade-item fade-item3">
+                                                <a class="tf-btn style-default btn-color-secondary pd-28 <?= $slide['text_alignment'] === 'center' ? 'mx-auto' : ($slide['text_alignment'] === 'right' ? 'ml-auto' : '') ?>"
+                                                    href="<?= htmlspecialchars($slide['button_link']) ?>">
+                                                    <span><?= htmlspecialchars($slide['button_text']) ?> <i class="icon-ArrowRight arr-1"></i></span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <?php 
+                        endwhile;
+                    else:
+                        // Fallback slider if no database entries
+                    ?>
                     <div class="swiper-slide">
                         <img class="lazyload" data-src="images/page-title/page-title-home-3.1.jpg"
-                            src="images/page-title/page-title-home-3.1.jpg" alt="">
-                        <div class="content-inner ">
+                            src="images/page-title/page-title-home-3.1.jpg" alt="Discover Your Past Life Journey">
+                        <div class="content-inner">
                             <div class="tf-container">
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="wrap-content">
                                             <div class="heading fade-item fade-item1">
-                                                <h2 class="title text-white">Discover Your Past Life Journey
-                                                </h2>
+                                                <h2 class="title text-white">Discover Your Past Life Journey</h2>
                                                 <p class="description text-white fade-item fade-item2">
                                                     Our specialized past life astrology readings offer profound insights
                                                     into your soul's journey, helping you understand karmic patterns
@@ -41,10 +96,9 @@
                                                 </p>
                                             </div>
                                             <div class="fade-item fade-item3">
-                                                <a class="tf-btn style-default btn-color-secondary pd-28 "
+                                                <a class="tf-btn style-default btn-color-secondary pd-28"
                                                     href="contact.php">
-                                                    <span>Book a Consultation <i
-                                                            class="icon-ArrowRight arr-1"></i></span>
+                                                    <span>Book a Consultation <i class="icon-ArrowRight arr-1"></i></span>
                                                 </a>
                                             </div>
                                         </div>
@@ -53,68 +107,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="swiper-slide">
-                        <img class="lazyload" data-src="images/page-title/page-title-home-3.2.jpg"
-                            src="images/page-title/page-title-home-3.2.jpg" alt="">
-                        <div class="content-inner">
-                            <div class="tf-container">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="wrap-content mx-auto  text-center">
-                                            <div class="heading fade-item fade-item1">
-                                                <h2 class="title text-white">Strengthen Your Spiritual Core
-                                                </h2>
-                                                <p class="description text-white fade-item fade-item2">
-                                                    Our astrology sessions focus on empowering you to understand your
-                                                    cosmic blueprint and soul purpose. Let us guide you through life's
-                                                    challenges with ancient wisdom and spiritual insights.
-                                                </p>
-                                            </div>
-                                            <div class="fade-item fade-item3">
-                                                <a class="tf-btn style-default btn-color-secondary pd-28 mx-auto"
-                                                    href="contact-us.html">
-                                                    <span>Book a Consultation <i
-                                                            class="icon-ArrowRight arr-1"></i></span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <img class="lazyload" data-src="images/page-title/page-title-home-3.3.jpg"
-                            src="images/page-title/page-title-home-3.3.jpg" alt="">
-                        <div class="content-inner">
-                            <div class="tf-container">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="wrap-content ml-auto text-end">
-                                            <div class="heading">
-                                                <h2 class="title text-white fade-item fade-item1">Renew Your Spiritual
-                                                    Energy
-                                                </h2>
-                                                <p class="description text-white fade-item fade-item2">
-                                                    We focus on renewing your spiritual energy and divine connection. Our
-                                                    personalized astrology readings offer the guidance and healing you need to
-                                                    overcome karmic blocks & manifest your highest potential.
-                                                </p>
-                                            </div>
-                                            <div class="fade-item fade-item3">
-                                                <a class="tf-btn style-default btn-color-secondary pd-28  ml-auto "
-                                                    href="contact-us.html">
-                                                    <span>Book a Consultation <i
-                                                            class="icon-ArrowRight arr-1"></i></span>
-                                                </a>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <?php endif; ?>
                 </div>
             </div>
             <div class="swiper-pagination pagination-page-title-home"></div>

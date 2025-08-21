@@ -34,6 +34,12 @@
                 <span>Service Manager</span>
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="slider.php">
+                <i class="bi bi-door-open"></i>
+                <span>Slider Manager</span>
+            </a>
+        </li>
         
         <li class="nav-item">
             <a class="nav-link collapsed" href="gallery.php">
