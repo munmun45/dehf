@@ -1,10 +1,10 @@
 <meta charset="utf-8" />
 <!--[if IE ]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/><![endif]-->
-<title>Divine Energy Healing Foundation - Past Life Astrology & Spiritual Healing in Bhubaneswar, Odisha</title>
+<title>Divine Energy Healing Foundation - Life Coaching, Reiki, Hypnotherapy & Holistic Healing in Bhubaneswar, Puri, Cuttack, Odisha</title>
 <meta name="description"
-    content="Divine Energy Healing Foundation offers expert past life astrology readings, karmic healing, and spiritual guidance in Bhubaneswar, Odisha. Discover your soul's journey through professional astrology consultations, past life regression therapy, and energy healing sessions. Book your spiritual awakening consultation today.">
+    content="Divine Energy Healing Foundation offers comprehensive holistic healing services including Life Coaching, Astrology, Reiki Therapy, Hypnotherapy, Past Life Regression, NLP, Theta Healing, Pranic Healing in Bhubaneswar, Puri, Cuttack, Odisha. Expert practitioners for mind, body & soul transformation. Book your healing session today.">
 <meta name="keywords"
-    content="past life astrology Bhubaneswar, spiritual healing Odisha, karmic healing Bhubaneswar, astrology consultation Bhubaneswar, past life regression Odisha, soul mate astrology, spiritual guidance Bhubaneswar, energy healing Odisha, astrologer Bhubaneswar, spiritual counseling, past life trauma healing, young soul guidance, cosmic blueprint reading, spiritual awakening Bhubaneswar, divine energy healing, astrology services Odisha, past life reading Bhubaneswar, spiritual therapy Odisha, karmic patterns healing">
+    content="life coaching Bhubaneswar, reiki therapy Odisha, hypnotherapy Puri, past life regression Cuttack, astrology consultation Bhubaneswar, clinical hypnotherapy Odisha, reiki healing Puri, pranic healing Cuttack, theta healing Bhubaneswar, guided meditation classes Odisha, NLP therapy Puri, neuro linguistic programming Cuttack, holistic healing Bhubaneswar, spiritual healing Odisha, energy healing Puri, meditation practices Cuttack, life coach Bhubaneswar, reiki master Odisha, hypnotherapist Puri, astrologer Cuttack, spiritual guidance Bhubaneswar, mind body soul healing Odisha, alternative therapy Puri, wellness center Cuttack, holistic practitioner Bhubaneswar">
 <meta name="author" content="Divine Energy Healing Foundation" />
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
 <meta name="googlebot" content="index, follow" />
@@ -12,8 +12,8 @@
 <!-- Open Graph Meta Tags -->
 <meta property="og:locale" content="en_US" />
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Divine Energy Healing Foundation - Past Life Astrology & Spiritual Healing in Bhubaneswar" />
-<meta property="og:description" content="Expert past life astrology readings, karmic healing, and spiritual guidance in Bhubaneswar, Odisha. Discover your soul's journey through professional astrology consultations and energy healing sessions." />
+<meta property="og:title" content="Divine Energy Healing Foundation - Life Coaching, Reiki, Hypnotherapy & Holistic Healing in Odisha" />
+<meta property="og:description" content="Comprehensive holistic healing services including Life Coaching, Reiki Therapy, Hypnotherapy, Past Life Regression, NLP, Theta Healing in Bhubaneswar, Puri, Cuttack, Odisha. Expert practitioners for mind, body & soul transformation." />
 <meta property="og:url" content="https://divineenergyhealingfoundation.com/" />
 <meta property="og:site_name" content="Divine Energy Healing Foundation" />
 <meta property="og:image" content="https://divineenergyhealingfoundation.com/images/logo/logo-white.png" />
@@ -23,8 +23,8 @@
 
 <!-- Twitter Card Meta Tags -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Divine Energy Healing Foundation - Past Life Astrology & Spiritual Healing in Bhubaneswar" />
-<meta name="twitter:description" content="Expert past life astrology readings, karmic healing, and spiritual guidance in Bhubaneswar, Odisha. Book your spiritual awakening consultation today." />
+<meta name="twitter:title" content="Divine Energy Healing Foundation - Life Coaching, Reiki, Hypnotherapy & Holistic Healing in Odisha" />
+<meta name="twitter:description" content="Comprehensive holistic healing services including Life Coaching, Reiki Therapy, Hypnotherapy, Past Life Regression, NLP, Theta Healing in Bhubaneswar, Puri, Cuttack, Odisha." />
 <meta name="twitter:image" content="https://divineenergyhealingfoundation.com/images/logo/logo-white.png" />
 <meta name="twitter:image:alt" content="Divine Energy Healing Foundation Logo" />
 
@@ -35,7 +35,7 @@
   "@type": "LocalBusiness",
   "name": "Divine Energy Healing Foundation",
   "image": "https://divineenergyhealingfoundation.com/images/logo/logo-white.png",
-  "description": "Expert past life astrology readings, karmic healing, and spiritual guidance in Bhubaneswar, Odisha.",
+  "description": "Comprehensive holistic healing services including Life Coaching, Reiki Therapy, Hypnotherapy, Past Life Regression, NLP, Theta Healing, Pranic Healing in Bhubaneswar, Puri, Cuttack, Odisha.",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Bhubaneswar",
@@ -66,41 +66,100 @@
       "closes": "18:00"
     }
   ],
-  "serviceArea": {
-    "@type": "GeoCircle",
-    "geoMidpoint": {
-      "@type": "GeoCoordinates",
-      "latitude": 20.2961,
-      "longitude": 85.8245
+  "serviceArea": [
+    {
+      "@type": "City",
+      "name": "Bhubaneswar",
+      "addressRegion": "Odisha",
+      "addressCountry": "IN"
     },
-    "geoRadius": "50000"
-  },
+    {
+      "@type": "City", 
+      "name": "Puri",
+      "addressRegion": "Odisha",
+      "addressCountry": "IN"
+    },
+    {
+      "@type": "City",
+      "name": "Cuttack", 
+      "addressRegion": "Odisha",
+      "addressCountry": "IN"
+    }
+  ],
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
-    "name": "Spiritual Healing Services",
+    "name": "Holistic Healing Services",
     "itemListElement": [
       {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Past Life Astrology Reading",
-          "description": "Professional past life astrology consultation to understand karmic patterns and soul purpose"
+          "name": "Life Coaching",
+          "description": "Professional life coaching sessions for personal transformation and goal achievement"
         }
       },
       {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Karmic Healing",
-          "description": "Energy healing sessions to clear karmic blocks and past life trauma"
+          "name": "Reiki Therapy",
+          "description": "Traditional Reiki healing sessions for energy balancing and spiritual wellness"
         }
       },
       {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Spiritual Guidance",
-          "description": "Personalized spiritual counseling and guidance for soul growth"
+          "name": "Hypnotherapy",
+          "description": "Clinical hypnotherapy sessions for behavioral change and healing"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Past Life Regression Therapy",
+          "description": "Guided past life regression sessions to heal karmic patterns and trauma"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "NLP (Neuro-Linguistic Programming)",
+          "description": "NLP techniques for mindset transformation and behavioral change"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Theta Healing",
+          "description": "Theta healing sessions for deep emotional and physical healing"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Pranic Healing",
+          "description": "Pranic healing energy therapy for chakra balancing and wellness"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Astrology Consultations",
+          "description": "Professional astrology readings and cosmic guidance sessions"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Guided Meditation Classes",
+          "description": "Group and individual meditation sessions for mindfulness and inner peace"
         }
       }
     ]
