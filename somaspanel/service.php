@@ -66,7 +66,7 @@
                       <td><?= $service['id'] ?></td>
                       <td>
                         <?php if($service['main_image']): ?>
-                          <img src="../<?= $service['main_image'] ?>" alt="Service" style="width: 50px; height: 50px; object-fit: cover; border-radius: 5px;">
+                          <img src="./<?= $service['main_image'] ?>" alt="Service" style="width: 50px; height: 50px; object-fit: cover; border-radius: 5px;">
                         <?php else: ?>
                           <div class="bg-light d-flex align-items-center justify-content-center" style="width: 50px; height: 50px; border-radius: 5px;">
                             <i class="bi bi-image text-muted"></i>
@@ -409,6 +409,18 @@
             </div>
             
             <div class="mb-3">
+              <label for="editGalleryImages" class="form-label">Add Gallery Images</label>
+              <input type="file" class="form-control" id="editGalleryImages" name="gallery_images[]" accept="image/*" multiple>
+              <small class="text-muted">Select multiple images to add to gallery</small>
+            </div>
+            
+            <!-- Current Gallery Images -->
+            <div class="mb-3">
+              <label class="form-label">Current Gallery Images</label>
+              <div id="currentGalleryImages" class="row g-2"></div>
+            </div>
+            
+            <div class="mb-3">
               <label for="editAboutTitle" class="form-label">About Title</label>
               <input type="text" class="form-control" id="editAboutTitle" name="about_title">
             </div>
@@ -486,12 +498,78 @@
           document.getElementById('editBenefitsTitle').value = data.benefits_title || '';
           document.getElementById('editBenefitsDescription').value = data.benefits_description || '';
           
+          // Display current main image
           if(data.main_image) {
-            document.getElementById('currentMainImage').innerHTML = `<small class="text-muted">Current: <img src="../${data.main_image}" style="width: 50px; height: 50px; object-fit: cover; margin-top: 5px;"></small>`;
+            document.getElementById('currentMainImage').innerHTML = `<small class="text-muted">Current: <img src="./${data.main_image}" style="width: 50px; height: 50px; object-fit: cover; margin-top: 5px;"></small>`;
           }
+          
+          // Load and display gallery images
+          loadGalleryImages(serviceId);
           
           new bootstrap.Modal(document.getElementById('editServiceModal')).show();
         });
+    }
+
+    // Load gallery images for editing
+    function loadGalleryImages(serviceId) {
+      fetch(`./process/get_gallery_images.php?service_id=${serviceId}`)
+        .then(response => response.json())
+        .then(data => {
+          const galleryContainer = document.getElementById('currentGalleryImages');
+          galleryContainer.innerHTML = '';
+          
+          if (data.success && data.images && data.images.length > 0) {
+            data.images.forEach(image => {
+              const imageDiv = document.createElement('div');
+              imageDiv.className = 'col-md-3 col-sm-4 col-6';
+              imageDiv.innerHTML = `
+                <div class="card">
+                  <img src="./${image.image_path}" class="card-img-top" style="height: 100px; object-fit: cover;" alt="Gallery Image">
+                  <div class="card-body p-2">
+                    <button type="button" class="btn btn-danger btn-sm w-100" onclick="deleteGalleryImage(${image.id}, ${serviceId})">
+                      <i class="bi bi-trash"></i> Delete
+                    </button>
+                  </div>
+                </div>
+              `;
+              galleryContainer.appendChild(imageDiv);
+            });
+          } else {
+            galleryContainer.innerHTML = '<div class="col-12"><p class="text-muted">No gallery images found.</p></div>';
+          }
+        })
+        .catch(error => {
+          console.error('Error loading gallery images:', error);
+          document.getElementById('currentGalleryImages').innerHTML = '<div class="col-12"><p class="text-danger">Error loading gallery images.</p></div>';
+        });
+    }
+
+    // Delete gallery image
+    function deleteGalleryImage(imageId, serviceId) {
+      if (confirm('Are you sure you want to delete this image?')) {
+        fetch('./process/delete_gallery_image.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            image_id: imageId
+          })
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            // Reload gallery images
+            loadGalleryImages(serviceId);
+          } else {
+            alert('Error deleting image: ' + data.message);
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          alert('An error occurred while deleting the image.');
+        });
+      }
     }
 
     // Delete Service Function

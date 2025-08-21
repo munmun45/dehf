@@ -41,6 +41,31 @@ try {
         }
     }
 
+    // Handle gallery images upload
+    if (isset($_FILES['gallery_images']) && !empty($_FILES['gallery_images']['name'][0])) {
+        $upload_dir = '../images/services/gallery/';
+        if (!is_dir($upload_dir)) {
+            mkdir($upload_dir, 0777, true);
+        }
+        
+        foreach ($_FILES['gallery_images']['tmp_name'] as $key => $tmp_name) {
+            if ($_FILES['gallery_images']['error'][$key] === UPLOAD_ERR_OK) {
+                $file_extension = pathinfo($_FILES['gallery_images']['name'][$key], PATHINFO_EXTENSION);
+                $gallery_image_name = $slug . '_gallery_' . time() . '_' . $key . '.' . $file_extension;
+                $gallery_image_path = $upload_dir . $gallery_image_name;
+                
+                if (move_uploaded_file($tmp_name, $gallery_image_path)) {
+                    $gallery_image = 'images/services/gallery/' . $gallery_image_name;
+                    
+                    // Insert gallery image into service_images table
+                    $gallery_stmt = $conn->prepare("INSERT INTO service_images (service_id, image_path, image_type) VALUES (?, ?, 'gallery')");
+                    $gallery_stmt->bind_param("is", $service_id, $gallery_image);
+                    $gallery_stmt->execute();
+                }
+            }
+        }
+    }
+
     // Update service
     if ($main_image_update) {
         $stmt = $conn->prepare("UPDATE services SET title = ?, slug = ?, about_title = ?, about_description = ?, benefits_title = ?, benefits_description = ?, status = ?" . $main_image_update . " WHERE id = ?");
