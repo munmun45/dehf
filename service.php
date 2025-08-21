@@ -325,13 +325,13 @@
                                     <div class="select-custom mb-20">
                                         <select id="service" data-default="" name="select">
                                             <option value="---">Choose Services</option>
-                                            <option value="Individual Counseling">Individual Counseling</option>
-                                            <option value="Family Therapy">Family Therapy</option>
-                                            <option value="Couples Therapy">Couples Therapy</option>
-                                            <option value="Group Therapy">Group Therapy</option>
-                                            <option value="Child & Adolescent Therapy">Child & Adolescent Therapy
+                                            <option value="Past Life Reading">Past Life Reading</option>
+                                            <option value="Karmic Healing">Karmic Healing</option>
+                                            <option value="Soul Mate Astrology">Soul Mate Astrology</option>
+                                            <option value="Spiritual Workshops">Spiritual Workshops</option>
+                                            <option value="Young Soul Guidance">Young Soul Guidance
                                             </option>
-                                            <option value="Trauma Counseling">Trauma Counseling</option>
+                                            <option value="Past Life Trauma Healing">Past Life Trauma Healing</option>
                                         </select>
                                     </div>
                                     <fieldset>

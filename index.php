@@ -14,18 +14,7 @@
 
 
 
-
-
-
         <?php require("./config/header.php"); ?>
-
-
-
-
-
-
-
-
 
 
 
@@ -43,18 +32,17 @@
                                     <div class="col-12">
                                         <div class="wrap-content">
                                             <div class="heading fade-item fade-item1">
-                                                <h2 class="title text-white">Support Your Child’s Emotional Growth
+                                                <h2 class="title text-white">Discover Your Past Life Journey
                                                 </h2>
                                                 <p class="description text-white fade-item fade-item2">
-                                                    Our specialized therapy for children offers a safe and nurturing
-                                                    environment where your child can express their feelings, develop
-                                                    emotional resilience, and navigate life’s challenges with
-                                                    confidence.
+                                                    Our specialized past life astrology readings offer profound insights
+                                                    into your soul's journey, helping you understand karmic patterns
+                                                    and unlock your spiritual potential for healing and growth.
                                                 </p>
                                             </div>
                                             <div class="fade-item fade-item3">
                                                 <a class="tf-btn style-default btn-color-secondary pd-28 "
-                                                    href="contact-us.html">
+                                                    href="contact.php">
                                                     <span>Book a Consultation <i
                                                             class="icon-ArrowRight arr-1"></i></span>
                                                 </a>
@@ -74,12 +62,12 @@
                                     <div class="col-12">
                                         <div class="wrap-content mx-auto  text-center">
                                             <div class="heading fade-item fade-item1">
-                                                <h2 class="title text-white">Strengthen Your Emotional Core
+                                                <h2 class="title text-white">Strengthen Your Spiritual Core
                                                 </h2>
                                                 <p class="description text-white fade-item fade-item2">
-                                                    Our therapy sessions focus on empowering you to regain emotional
-                                                    balance and resilience. Let us guide you through life’s obstacles
-                                                    with care and proven strategies.
+                                                    Our astrology sessions focus on empowering you to understand your
+                                                    cosmic blueprint and soul purpose. Let us guide you through life's
+                                                    challenges with ancient wisdom and spiritual insights.
                                                 </p>
                                             </div>
                                             <div class="fade-item fade-item3">
@@ -104,13 +92,13 @@
                                     <div class="col-12">
                                         <div class="wrap-content ml-auto text-end">
                                             <div class="heading">
-                                                <h2 class="title text-white fade-item fade-item1">Renew Your Strength
-                                                    and Resilience
+                                                <h2 class="title text-white fade-item fade-item1">Renew Your Spiritual
+                                                    Energy
                                                 </h2>
                                                 <p class="description text-white fade-item fade-item2">
-                                                    We focus on renewing your strength and resilience. Our tailored
-                                                    therapy sessions offer the support and strategies you need to
-                                                    overcome challenges & thrive.
+                                                    We focus on renewing your spiritual energy and divine connection. Our
+                                                    personalized astrology readings offer the guidance and healing you need to
+                                                    overcome karmic blocks & manifest your highest potential.
                                                 </p>
                                             </div>
                                             <div class="fade-item fade-item3">
@@ -147,16 +135,15 @@
                                     </div>
                                     <div class="heading-section text-start ">
                                         <p class="text-2 sub wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">
-                                            About Healingy</p>
+                                            About Divine Energy Healing Foundation</p>
                                         <h3 class="wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">Trusted
-                                            professionals dedicated to your mental
+                                            astrologers dedicated to your spiritual journey
                                         </h3>
                                         <p class="description text-1 lh-30 wow fadeInUp" data-wow-duration="1000"
-                                            data-wow-delay="0s">Healingy is a reputable center for
-                                            counseling and
-                                            psychological therapy, with a team of experienced professionals ready to
-                                            listen and support you. We believe that everyone has the ability to heal and
-                                            grow, with the right guidance.
+                                            data-wow-delay="0s">Divine Energy Healing Foundation is a renowned center for
+                                            past life astrology and spiritual healing, with experienced practitioners ready to
+                                            guide and illuminate your path. We believe that everyone has the ability to heal and
+                                            transform through understanding their soul's journey.
                                         </p>
                                     </div>
                                     <div class="wrap-counter layout-2">
@@ -195,7 +182,7 @@
                                                     <div class="odometer style-1-3">10
                                                     </div>
                                                 </div>
-                                                <p>Therapy Sessions</p>
+                                                <p>Astrology Readings</p>
                                             </div>
                                         </div>
                                         <div class="counter-item has-icon">
@@ -235,140 +222,85 @@
                                 <div class="heading-section text-start">
                                     <p class="text-2 sub wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">What
                                         We Do</p>
-                                    <h3 class="wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">Counseling &
-                                        Therapy Services</h3>
+                                    <h3 class="wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">Astrology &
+                                        Spiritual Healing Services</h3>
                                     <p class="description text-1 lh-30 wow fadeInUp" data-wow-duration="1000"
-                                        data-wow-delay="0s">We offer a wide range of services to meet your personal
-                                        needs
+                                        data-wow-delay="0s">We offer a wide range of spiritual services to meet your soul's
+                                        journey needs
                                     </p>
                                 </div>
-                                <a class="tf-btn  style-default btn-color-white has-boder pd-26 wow fadeInUp"
-                                    data-wow-duration="1000" data-wow-delay="0.1s" href="our-service.html">
-                                    <span>Explore Our Services</span>
-                                </a>
+                                
                             </div>
                             <div class="grid-layout-3 multi-item">
+                                <?php
+                                // Include database connection
+                                include './somaspanel/config/config.php';
+                                
+                                // Fetch active services from database
+                                $services_query = "SELECT * FROM services WHERE status = 'active' ORDER BY id";
+                                $services_result = $conn->query($services_query);
+                                
+                                if ($services_result && $services_result->num_rows > 0) {
+                                    $delay_counter = 0;
+                                    while($service = $services_result->fetch_assoc()) {
+                                        $delay_values = ['0s', '0.1s', '0.2s'];
+                                        $delay = $delay_values[$delay_counter % 3];
+                                        $delay_counter++;
+                                        
+                                        // Get main image or use default
+                                        $service_image = !empty($service['main_image']) ? 'somaspanel/' . $service['main_image'] : 'images/section/service-item-' . (($delay_counter - 1) % 6 + 1) . '.jpg';
+                                        
+                                        // Truncate description if too long
+                                        $description = !empty($service['about_description']) ? $service['about_description'] : 'Discover the spiritual insights and healing this service offers for your soul\'s journey.';
+                                        if (strlen($description) > 120) {
+                                            $description = substr($description, 0, 120) . '...';
+                                        }
+                                ?>
+                                <div class="service-item style-3 hover-img wow fadeInUp" data-wow-duration="1000"
+                                    data-wow-delay="<?= $delay ?>">
+                                    <div class="content z-5">
+                                        <h5 class="title">
+                                            <a href="service.php?id=<?= $service['id'] ?>"><?= htmlspecialchars($service['title']) ?></a>
+                                        </h5>
+                                        <p><?= htmlspecialchars($description) ?></p>
+                                    </div>
+                                    <div class="image-wrap z-5 relative">
+                                        <a href="service.php?id=<?= $service['id'] ?>">
+                                            <img class="lazyload" data-src="<?= $service_image ?>"
+                                                src="<?= $service_image ?>" alt="<?= htmlspecialchars($service['title']) ?>">
+                                        </a>
+                                    </div>
+                                    <a href="service.php?id=<?= $service['id'] ?>" class="tf-btn-link z-5">
+                                        <span data-text="Read More">Read More</span>
+                                        <i class="icon-ArrowRight"></i>
+                                    </a>
+                                </div>
+                                <?php
+                                    }
+                                } else {
+                                    // Fallback content if no services in database
+                                ?>
                                 <div class="service-item style-3 hover-img wow fadeInUp" data-wow-duration="1000"
                                     data-wow-delay="0s">
                                     <div class="content z-5">
                                         <h5 class="title">
-                                            <a href="service-details.html"> Individual Counseling</a>
+                                            <a href="#"> Past Life Reading</a>
                                         </h5>
-                                        <p>Personal psychological support to help you overcome stress, anxiety, and
-                                            regain
-                                            confidence.</p>
+                                        <p>Discover your soul's journey through detailed past life astrology readings to
+                                            understand karmic patterns and spiritual purpose.</p>
                                     </div>
                                     <div class="image-wrap z-5 relative">
-                                        <a href="service-details.html">
+                                        <a href="#">
                                             <img class="lazyload" data-src="images/section/service-item-1.jpg"
-                                                src="images/section/service-item-1.jpg" alt="">
+                                                src="images/section/service-item-1.jpg" alt="Past Life Reading">
                                         </a>
                                     </div>
-                                    <a href="service-details.html" class="tf-btn-link z-5">
+                                    <a href="#" class="tf-btn-link z-5">
                                         <span data-text="Read More">Read More</span>
                                         <i class="icon-ArrowRight"></i>
                                     </a>
                                 </div>
-                                <div class="service-item style-3 hover-img wow fadeInUp" data-wow-duration="1000"
-                                    data-wow-delay="0.1s">
-                                    <div class="content z-5">
-                                        <h5 class="title">
-                                            <a href="service-details.html"> Family Therapy</a>
-                                        </h5>
-                                        <p>Improve family relationships, resolve conflicts, and build a healthy living
-                                            environment.</p>
-                                    </div>
-                                    <div class="image-wrap z-5 relative">
-                                        <a href="service-details.html">
-                                            <img class="lazyload" data-src="images/section/service-item-2.jpg"
-                                                src="images/section/service-item-2.jpg" alt="">
-                                        </a>
-                                    </div>
-                                    <a href="service-details.html" class="tf-btn-link z-5">
-                                        <span data-text="Read More">Read More</span>
-                                        <i class="icon-ArrowRight"></i>
-                                    </a>
-                                </div>
-                                <div class="service-item style-3 hover-img wow fadeInUp" data-wow-duration="1000"
-                                    data-wow-delay="0.2s">
-                                    <div class="content z-5">
-                                        <h5 class="title">
-                                            <a href="service-details.html">Couples Therapy</a>
-                                        </h5>
-                                        <p>Enhance understanding affection between couples, helping to strengthen the
-                                            relationship.</p>
-                                    </div>
-                                    <div class="image-wrap z-5 relative">
-                                        <a href="service-details.html">
-                                            <img class="lazyload" data-src="images/section/service-item-3.jpg"
-                                                src="images/section/service-item-3.jpg" alt="">
-                                        </a>
-                                    </div>
-                                    <a href="service-details.html" class="tf-btn-link z-5">
-                                        <span data-text="Read More">Read More</span>
-                                        <i class="icon-ArrowRight"></i>
-                                    </a>
-                                </div>
-                                <div class="service-item style-3 hover-img wow fadeInUp" data-wow-duration="1000"
-                                    data-wow-delay="0s">
-                                    <div class="content z-5">
-                                        <h5 class="title">
-                                            <a href="service-details.html"> Group Therapy</a>
-                                        </h5>
-                                        <p>Join others with similar challenges, sharing experiences and support in a
-                                            group setting.</p>
-                                    </div>
-                                    <div class="image-wrap z-5 relative">
-                                        <a href="service-details.html">
-                                            <img class="lazyload" data-src="images/section/service-item-4.jpg"
-                                                src="images/section/service-item-4.jpg" alt="">
-                                        </a>
-                                    </div>
-                                    <a href="service-details.html" class="tf-btn-link z-5">
-                                        <span data-text="Read More">Read More</span>
-                                        <i class="icon-ArrowRight"></i>
-                                    </a>
-                                </div>
-                                <div class="service-item style-3 hover-img wow fadeInUp" data-wow-duration="1000"
-                                    data-wow-delay="0.1s">
-                                    <div class="content z-5">
-                                        <h5 class="title">
-                                            <a href="service-details.html">Child & Adolescent Therapy</a>
-                                        </h5>
-                                        <p>Specialized support for children and teens, helping them navigate emotional
-                                            challenges.</p>
-                                    </div>
-                                    <div class="image-wrap z-5 relative">
-                                        <a href="service-details.html">
-                                            <img class="lazyload" data-src="images/section/service-item-5.jpg"
-                                                src="images/section/service-item-5.jpg" alt="">
-                                        </a>
-                                    </div>
-                                    <a href="service-details.html" class="tf-btn-link z-5">
-                                        <span data-text="Read More">Read More</span>
-                                        <i class="icon-ArrowRight"></i>
-                                    </a>
-                                </div>
-                                <div class="service-item style-3 hover-img wow fadeInUp" data-wow-duration="1000"
-                                    data-wow-delay="0.2s">
-                                    <div class="content z-5">
-                                        <h5 class="title">
-                                            <a href="service-details.html">Trauma Counseling</a>
-                                        </h5>
-                                        <p>Focused therapy to help you heal from past trauma and regain control over
-                                            your life.</p>
-                                    </div>
-                                    <div class="image-wrap z-5 relative">
-                                        <a href="service-details.html">
-                                            <img class="lazyload" data-src="images/section/service-item-6.jpg"
-                                                src="images/section/service-item-6.jpg" alt="">
-                                        </a>
-                                    </div>
-                                    <a href="service-details.html" class="tf-btn-link z-5">
-                                        <span data-text="Read More">Read More</span>
-                                        <i class="icon-ArrowRight"></i>
-                                    </a>
-                                </div>
+                                <?php } ?>
                             </div>
                         </div>
                     </div>
@@ -386,15 +318,15 @@
                                     <p class="text-2 sub wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">How
                                         WE Work</p>
                                     <h3 class="wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s"><a href="#">An
-                                            Easy-to-Follow Therapy Approach</a></h3>
+                                            Easy-to-Follow Spiritual Journey</a></h3>
                                     <p class="description text-1 lh-30 wow fadeInUp" data-wow-duration="1000"
-                                        data-wow-delay="0s">Supporting you from consultation to care for a
+                                        data-wow-delay="0s">Guiding you from consultation to enlightenment for a
                                         smooth
-                                        path to mental well-being.
+                                        path to spiritual awakening.
                                     </p>
                                 </div>
                                 <a class="tf-btn style-default btn-color-white has-boder pd-26 wow fadeInUp"
-                                    data-wow-duration="1000" data-wow-delay="0s" href="contact-us.html">
+                                    data-wow-duration="1000" data-wow-delay="0s" href="contact.php">
                                     <span>Get In Touch</span>
                                 </a>
                             </div>
@@ -420,10 +352,9 @@
                                         <span class="number">2</span>
                                     </div>
                                     <div class="content">
-                                        <h5 class="title"><a href="#">Customized Plan</a></h5>
-                                        <p>We’ll develop a personalized therapy plan based on your specific needs and
-                                            goals
-                                            to ensure the most support.</p>
+                                        <h5 class="title"><a href="#">Spiritual Assessment</a></h5>
+                                        <p>We'll create a personalized astrology chart and spiritual assessment based on your
+                                            birth details and soul's journey to guide your path.</p>
                                     </div>
                                 </div>
                                 <div class="process-item style-no-line style-has-icon effec-icon wow fadeInRight"
@@ -433,9 +364,9 @@
                                         <span class="number">3</span>
                                     </div>
                                     <div class="content">
-                                        <h5 class="title"><a href="#">Therapy Sessions</a></h5>
-                                        <p>Contact us via phone, email to schedule an initial consultation where we’ll
-                                            explore your needs.</p>
+                                        <h5 class="title"><a href="#">Astrology Reading</a></h5>
+                                        <p>Experience transformative past life astrology sessions where we explore your
+                                            karmic patterns and soul purpose.</p>
                                     </div>
                                 </div>
                                 <div class="process-item style-no-line style-has-icon  effec-icon wow fadeInRight"
@@ -445,10 +376,9 @@
                                         <span class="number">4</span>
                                     </div>
                                     <div class="content">
-                                        <h5 class="title"> <a href="#">Ongoing Support</a></h5>
-                                        <p>We’ll provide continuous support, regularly review your progress, and adjust
-                                            the
-                                            plan as needed to help you.</p>
+                                        <h5 class="title"> <a href="#">Spiritual Guidance</a></h5>
+                                        <p>We'll provide continuous spiritual guidance, energy healing support, and
+                                            ongoing insights to help you on your soul's journey.</p>
                                     </div>
                                 </div>
                             </div>
@@ -458,257 +388,116 @@
             </section>
             <!-- /.section-process -->
 
-            <!-- .section-testimonials -->
-            <section class="section-testimonials bg-1 home-page-3  tf-spacing-1 ">
+       
 
-                <div class="heading-section ">
-                    <p class="text-2 sub wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">Client Testimonials
-                    </p>
-                    <h3 class="wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">What Our Clients Are Saying
-                    </h3>
-                    <p class="description text-1 lh-30 wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">Hear
-                        firsthand accounts of healing and positive
-                        change.
-                    </p>
-                </div>
-                <div class="swiper-container slider-testimonial-center">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <div class="wg-testimonial style-text-center ">
-                                <div class="rating">
-                                    <i class="icon-favorite_major"></i>
-                                    <i class="icon-favorite_major"></i>
-                                    <i class="icon-favorite_major"></i>
-                                    <i class="icon-favorite_major"></i>
-                                    <i class="icon-favorite_major"></i>
-                                </div>
-                                <div class="content">
-                                    <p class="text text-1 lh-30  fw-4 mb-16">
-                                        "I am incredibly grateful for the compassionate and professional
-                                        care I
-                                        received. The support from the team was instrumental in my personal
-                                        growth and
-                                        healing journey.
-                                    </p>
-                                    <div class="bot">
-                                        <div class="info">
-                                            <h6 class="title ">
-                                                <a href="therapists-details.html"> Sarah M.</a>
-                                            </h6>
-                                            <p>New York, NY</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="wg-testimonial style-text-center ">
-                                <div class="rating">
-                                    <i class="icon-favorite_major"></i>
-                                    <i class="icon-favorite_major"></i>
-                                    <i class="icon-favorite_major"></i>
-                                    <i class="icon-favorite_major"></i>
-                                    <i class="icon-favorite_major"></i>
-                                </div>
-                                <div class="content">
-                                    <p class="text text-1 lh-30  fw-4 mb-16">
-                                        "The expertise and encouragement from Healingy made a significant
-                                        difference in
-                                        my
-                                        life. The
-                                        tailored approach and dedicated therapists helped me overcome my
-                                        challenges and
-                                        achieve my
-                                        goals.
-                                    </p>
-                                    <div class="bot">
-                                        <div class="info">
-                                            <h6 class="title ">
-                                                <a href="therapists-details.html"> John R. </a>
-
-                                            </h6>
-                                            <p>Los Angeles, CA</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="wg-testimonial style-text-center ">
-                                <div class="rating">
-                                    <i class="icon-favorite_major"></i>
-                                    <i class="icon-favorite_major"></i>
-                                    <i class="icon-favorite_major"></i>
-                                    <i class="icon-favorite_major"></i>
-                                    <i class="icon-favorite_major"></i>
-                                </div>
-                                <div class="content">
-                                    <p class="text text-1 lh-30  fw-4 mb-16">
-                                        "Thanks to Healingy’s exceptional team, I have gained valuable
-                                        insights and
-                                        tools to manage my stress effectively. The personalized care and
-                                        understanding
-                                        truly made a positive impact."
-                                    </p>
-                                    <div class="bot">
-                                        <div class="info">
-                                            <h6 class="title ">
-                                                <a href="therapists-details.html">Emily T.</a>
-                                            </h6>
-                                            <p>Chicago, IL</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="wg-testimonial style-text-center ">
-                                <div class="rating">
-                                    <i class="icon-favorite_major"></i>
-                                    <i class="icon-favorite_major"></i>
-                                    <i class="icon-favorite_major"></i>
-                                    <i class="icon-favorite_major"></i>
-                                    <i class="icon-favorite_major"></i>
-                                </div>
-                                <div class="content">
-                                    <p class="text text-1 lh-30  fw-4 mb-16">
-                                        "I can't thank Healingy enough for their unwavering support and
-                                        guidance. The
-                                        personalized therapy sessions and insightful feedback have been
-                                        crucial in my
-                                        journey towards a more balanced life."
-                                    </p>
-                                    <div class="bot">
-                                        <div class="info">
-                                            <h6 class="title ">
-                                                <a href="therapists-details.html">Michael L.</a>
-                                            </h6>
-                                            <p>Miami, FL</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-            </section>
-            <!-- /.section-testimonials -->
-
-            <!-- .section-news -->
-            <section class="section-news tf-spacing-1 style-pagination">
+            <!-- .section-gallery -->
+            <section class="section-gallery tf-spacing-1">
                 <div class="tf-container">
                     <div class="row">
                         <div class="col-12">
                             <div class="heading-section ">
-                                <p class="text-2 sub wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s"><a
-                                        href="#">Favourite Topics</a></p>
-                                <h3 class="wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">Healingy Blog &
-                                    Resources</h3>
+                                <p class="text-2 sub wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">
+                                    <a href="gallery.php">Gallery</a>
+                                </p>
+                                <h3 class="wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">Divine Energy Gallery</h3>
                                 <p class="description text-1 wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">
-                                    Your go-to source for mental health insights, tools, and
-                                    advice.
+                                    Explore our sacred spaces, healing sessions, and spiritual moments captured through time.
                                 </p>
                             </div>
+                            <br>
+                            <br>
                             <div class="swiper-container slider-layout-3">
                                 <div class="swiper-wrapper">
+                                    <?php
+                                    // Fetch gallery images from database
+                                    $gallery_query = "SELECT * FROM gallery WHERE status = 'active' ORDER BY sort_order ASC, created_at DESC LIMIT 6";
+                                    $gallery_result = $conn->query($gallery_query);
+                                    
+                                    if ($gallery_result && $gallery_result->num_rows > 0):
+                                        $delay = 0;
+                                        while($gallery_item = $gallery_result->fetch_assoc()):
+                                            $created_date = new DateTime($gallery_item['created_at']);
+                                    ?>
                                     <div class="swiper-slide">
-                                        <div class="article-blog-item  hover-img wow fadeInUp" data-wow-duration="1000"
-                                            data-wow-delay="0s">
+                                        <div class="article-blog-item hover-img wow fadeInUp" data-wow-duration="1000"
+                                            data-wow-delay="<?= $delay ?>s">
                                             <div class="image-wrap">
-                                                <a href="blog-details.html">
-
-                                                    <img class="lazyload" data-src="images/blog/blog-1.jpg"
-                                                        src="images/blog/blog-1.jpg" alt="">
+                                                <a href="somaspanel/<?= htmlspecialchars($gallery_item['image_path']) ?>" 
+                                                   data-lightbox="gallery" 
+                                                   data-title="<?= htmlspecialchars($gallery_item['title']) ?>">
+                                                    <img class="lazyload" 
+                                                         data-src="somaspanel/<?= htmlspecialchars($gallery_item['image_path']) ?>"
+                                                         src="somaspanel/<?= htmlspecialchars($gallery_item['image_path']) ?>" 
+                                                         alt="<?= htmlspecialchars($gallery_item['title']) ?>">
                                                 </a>
                                                 <div class="date-time">
                                                     <div class="content">
-                                                        <p class="entry-day ">12</p>
-                                                        <p class="entry-month fw-book">SEP</p>
+                                                        <p class="entry-day"><?= $created_date->format('d') ?></p>
+                                                        <p class="entry-month fw-book"><?= $created_date->format('M') ?></p>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="content">
-                                                <p class="sub"><a href="#">Therapy</a></p>
-                                                <h5 class="title"><a href="blog-details.html">Mindfulness For Better
-                                                        Mental
-                                                        Health: Simple Practices for Daily Peace
+                                                <p class="sub"><?= ucfirst(htmlspecialchars($gallery_item['category'])) ?></p>
+                                                <h5 class="title">
+                                                    <a href="somaspanel/<?= htmlspecialchars($gallery_item['image_path']) ?>" 
+                                                       data-lightbox="gallery">
+                                                        <?= htmlspecialchars($gallery_item['title']) ?>
                                                     </a>
                                                 </h5>
-                                                <p>Learn how mindfulness techniques can reduce stress and improve your
-                                                    mental
-                                                    well-being daily.</p>
+                                                <?php if (!empty($gallery_item['description'])): ?>
+                                                    <p><?= htmlspecialchars(substr($gallery_item['description'], 0, 100)) ?><?= strlen($gallery_item['description']) > 100 ? '...' : '' ?></p>
+                                                <?php endif; ?>
                                             </div>
-                                            <a href="#" class="tf-btn-link">
-                                                <span data-text="Read More">Read More</span>
-                                                <i class="icon-ArrowRight"></i>
-                                            </a>
+                                            
                                         </div>
                                     </div>
+                                    <?php 
+                                        $delay += 0.1;
+                                        endwhile;
+                                    else:
+                                        // Fallback gallery items if no database entries
+                                        $fallback_items = [
+                                            ['title' => 'Spiritual Healing Session', 'category' => 'healing', 'image' => 'images/blog/blog-1.jpg', 'desc' => 'Experience transformative spiritual healing in our sacred space.'],
+                                            ['title' => 'Astrology Reading Room', 'category' => 'astrology', 'image' => 'images/blog/blog-2.jpg', 'desc' => 'Private consultation room for personalized astrology readings.'],
+                                            ['title' => 'Meditation Workshop', 'category' => 'workshop', 'image' => 'images/blog/blog-3.jpg', 'desc' => 'Group meditation sessions for spiritual awakening and growth.']
+                                        ];
+                                        $delay = 0;
+                                        foreach($fallback_items as $item):
+                                    ?>
                                     <div class="swiper-slide">
-                                        <div class="article-blog-item  hover-img wow fadeInUp" data-wow-duration="1000"
-                                            data-wow-delay="0.1s">
+                                        <div class="article-blog-item hover-img wow fadeInUp" data-wow-duration="1000"
+                                            data-wow-delay="<?= $delay ?>s">
                                             <div class="image-wrap">
-                                                <a href="blog-details.html">
-                                                    <img class="lazyload" data-src="images/blog/blog-3.jpg"
-                                                        src="images/blog/blog-3.jpg" alt="">
-
+                                                <a href="gallery.php">
+                                                    <img class="lazyload" data-src="<?= $item['image'] ?>"
+                                                         src="<?= $item['image'] ?>" alt="<?= $item['title'] ?>">
                                                 </a>
                                                 <div class="date-time">
                                                     <div class="content">
-                                                        <p class="entry-day ">12</p>
-                                                        <p class="entry-month fw-book">SEP</p>
+                                                        <p class="entry-day"><?= date('d') ?></p>
+                                                        <p class="entry-month fw-book"><?= date('M') ?></p>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="content">
-                                                <p class="sub"><a href="#">Wellness</a></p>
-                                                <h5 class="title"><a href="blog-details.html">Self-Care for Emotional
-                                                        Well-being: Key Steps to Feeling Balanced
-                                                    </a>
+                                                <p class="sub"><?= ucfirst($item['category']) ?></p>
+                                                <h5 class="title">
+                                                    <a href="gallery.php"><?= $item['title'] ?></a>
                                                 </h5>
-                                                <p>Explore how CBT techniques help manage stress and build resilience
-                                                    for a
-                                                    calmer life.</p>
+                                                <p><?= $item['desc'] ?></p>
                                             </div>
-                                            <a href="#" class="tf-btn-link">
-                                                <span data-text="Read More">Read More</span>
+                                            <a href="gallery.php" class="tf-btn-link">
+                                                <span data-text="View Gallery">View Gallery</span>
                                                 <i class="icon-ArrowRight"></i>
                                             </a>
                                         </div>
                                     </div>
-                                    <div class="swiper-slide">
-                                        <div class="article-blog-item  hover-img wow fadeInUp" data-wow-duration="1000"
-                                            data-wow-delay="0.2s">
-                                            <div class="image-wrap">
-                                                <a href="blog-details.html">
-                                                    <img class="lazyload" data-src="images/blog/blog-4.jpg"
-                                                        src="images/blog/blog-4.jpg" alt="">
-                                                </a>
-                                                <div class="date-time">
-                                                    <div class="content">
-                                                        <p class="entry-day ">14</p>
-                                                        <p class="entry-month fw-book">SEP</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="content">
-                                                <p class="sub"><a href="#">Wellness</a></p>
-                                                <h5 class="title"><a href="blog-details.html">How Therapy Helps with
-                                                        Trauma:
-                                                        Pathways to Long-Term Healing
-                                                    </a>
-                                                </h5>
-                                                <p>Find out how therapy can guide you through trauma recovery and foster
-                                                    long-term healing.</p>
-                                            </div>
-                                            <a href="#" class="tf-btn-link">
-                                                <span data-text="Read More">Read More</span>
-                                                <i class="icon-ArrowRight"></i>
-                                            </a>
-                                        </div>
-                                    </div>
+                                    <?php 
+                                        $delay += 0.1;
+                                        endforeach;
+                                    endif; 
+                                    ?>
                                 </div>
                             </div>
                             <div class="swiper-pagination pagination-layout">
@@ -717,248 +506,7 @@
                     </div>
                 </div>
             </section>
-            <!-- /.section-news-->
-
-            <!-- .section-contact -->
-            <section class="section-contact">
-                <div class="tf-container">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="wrap-content">
-                                <div class="box-contact">
-                                    <div class="heading-section text-start">
-                                        <p class="text-2 sub wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">
-                                            Book a Consultation</p>
-                                        <h3 class="wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">Free
-                                            Consultation - Begin Your Healing Journey</h3>
-                                        <p class="description text-1 lh-30 wow fadeInUp" data-wow-duration="1000"
-                                            data-wow-delay="0s">Connect with a dedicated specialist today
-                                            and
-                                            take the first step towards a healthier, more fulfilling life.
-                                        </p>
-                                    </div>
-                                    <ul class="list-info">
-                                        <li class="wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s"><i
-                                                class="icon-Envelope"></i> <a href="#">themesflat@gmail.com</a></li>
-                                        <li class="wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s"><i
-                                                class="icon-PhoneCall"></i>1-333-345-6868</li>
-                                        <li class="wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s"><i
-                                                class="icon-MapPin"></i>101 E 129th St, East Chicago, IN 46312, US
-                                        </li>
-                                    </ul>
-                                    <a href="contact-us.html" class="tf-btn-link z-5 wow fadeInUp"
-                                        data-wow-duration="1000" data-wow-delay="0s">
-                                        <span data-text="Open map">Open map</span>
-                                        <i class="icon-ArrowRight"></i>
-                                    </a>
-                                </div>
-                                <form class="form-consultation wow fadeInRight" data-wow-duration="1000"
-                                    data-wow-delay="0s" method="post" id="contactform"
-                                    action="https://themesflat.co/html/healingy/contact/contact-process.php">
-                                    <h4 class="mb-20 text-center">Get A Free Consultation</h4>
-                                    <fieldset class="name">
-                                        <input type="text" name="name" class="tf-input style-1" placeholder="Your Name*"
-                                            tabindex="2" aria-required="true" required>
-                                    </fieldset>
-                                    <fieldset class="phone">
-                                        <input type="number" name="phone" class="tf-input style-1"
-                                            placeholder="Phone Number" tabindex="2" aria-required="true" required>
-                                    </fieldset>
-                                    <div class="select-custom mb-20">
-                                        <select id="service" data-default="" name="select">
-                                            <option value="---">Choose Services</option>
-                                            <option value="Individual Counseling">Individual Counseling</option>
-                                            <option value="Family Therapy">Family Therapy</option>
-                                            <option value="Couples Therapy">Couples Therapy</option>
-                                            <option value="Group Therapy">Group Therapy</option>
-                                            <option value="Child & Adolescent Therapy">Child & Adolescent Therapy
-                                            </option>
-                                            <option value="Trauma Counseling">Trauma Counseling</option>
-                                        </select>
-                                    </div>
-                                    <fieldset class="message">
-                                        <textarea id="message" class="tf-input" name="message" rows="4"
-                                            placeholder="Your mesage" tabindex="4" aria-required="true"
-                                            required></textarea>
-                                    </fieldset>
-                                    <button class="tf-btn style-default btn-color-secondary pd-40 boder-8 send-wrap"
-                                        type="submit">
-                                        <span>
-                                            Submit
-                                        </span>
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- /.section-contact -->
-
-            <!-- .section-faq -->
-            <section class="section-faq tf-spacing-1">
-                <div class="tf-container">
-                    <div class="row justify-center">
-                        <div class="col-md-8">
-                            <div class="heading-section ">
-                                <p class="text-2 sub">Help center</p>
-                                <h3>Questions and Answers</h3>
-                                <p class="description text-1 lh-30">Find answers to the most commonly asked questions
-                                    about our services.
-                                </p>
-                            </div>
-                            <div class="tf-accordion" id="accordion">
-                                <div class="tf-accordion-item">
-                                    <div class="accordion-header">
-                                        <h5 class="title collapsed" data-bs-toggle="collapse"
-                                            data-bs-target="#collapseOne" aria-expanded="true"
-                                            aria-controls="collapseOne">
-                                            What types of therapy do you offer at Healingy?
-                                            <span class="icon"></span>
-                                        </h5>
-                                    </div>
-                                    <div id="collapseOne" class="accordion-collapse collapse "
-                                        data-bs-parent="#accordion">
-                                        <div class="tf-accordion-body">
-                                            <p>
-                                                Therapy is useful for managing stress, anxiety, or life challenges. It
-                                                offers
-                                                support and helps with personal growth. A consultation can help you
-                                                decide
-                                                if
-                                                it's the right option.
-                                            </p>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="tf-accordion-item">
-                                    <div class="accordion-header">
-                                        <h5 class=" title " data-bs-toggle="collapse" data-bs-target="#collapseTwo"
-                                            aria-expanded="false" aria-controls="collapseTwo">
-                                            How do I know if therapy is right for me?
-                                            <span class="icon"></span>
-                                        </h5>
-                                    </div>
-                                    <div id="collapseTwo" class="accordion-collapse collapse show"
-                                        data-bs-parent="#accordion">
-                                        <div class="tf-accordion-body">
-                                            <p>
-                                                Therapy is useful for managing stress, anxiety, or life challenges. It
-                                                offers
-                                                support and helps with personal growth. A consultation can help you
-                                                decide
-                                                if
-                                                it's the right option.
-                                            </p>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="tf-accordion-item">
-                                    <div class="accordion-header">
-                                        <h5 class="title collapsed" data-bs-toggle="collapse"
-                                            data-bs-target="#collapseThree" aria-expanded="false"
-                                            aria-controls="collapseThree">
-                                            What should I expect during my first therapy session?
-                                            <span class="icon"></span>
-                                        </h5>
-                                    </div>
-                                    <div id="collapseThree" class="accordion-collapse collapse"
-                                        data-bs-parent="#accordion">
-                                        <div class="tf-accordion-body">
-                                            <p>
-                                                Therapy is useful for managing stress, anxiety, or life challenges. It
-                                                offers
-                                                support and helps with personal growth. A consultation can help you
-                                                decide
-                                                if
-                                                it's the right option.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="tf-accordion-item">
-                                    <div class="accordion-header">
-                                        <h5 class="title collapsed" data-bs-toggle="collapse"
-                                            data-bs-target="#collapseFour" aria-expanded="false"
-                                            aria-controls="collapseFour">
-                                            How long does a typical therapy session last?
-                                            <span class="icon"></span>
-                                        </h5>
-                                    </div>
-                                    <div id="collapseFour" class="accordion-collapse collapse"
-                                        data-bs-parent="#accordion">
-                                        <div class="tf-accordion-body">
-                                            <p>
-                                                Therapy is useful for managing stress, anxiety, or life challenges. It
-                                                offers
-                                                support and helps with personal growth. A consultation can help you
-                                                decide
-                                                if
-                                                it's the right option.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="tf-accordion-item">
-                                    <div class="accordion-header">
-                                        <h5 class="title collapsed" data-bs-toggle="collapse"
-                                            data-bs-target="#collapseFive" aria-expanded="false"
-                                            aria-controls="collapseFive">
-                                            Do you offer online or virtual therapy sessions?
-                                            <span class="icon"></span>
-                                        </h5>
-                                    </div>
-                                    <div id="collapseFive" class="accordion-collapse collapse"
-                                        data-bs-parent="#accordion">
-                                        <div class="tf-accordion-body">
-                                            <p>
-                                                Therapy is useful for managing stress, anxiety, or life challenges. It
-                                                offers
-                                                support and helps with personal growth. A consultation can help you
-                                                decide
-                                                if
-                                                it's the right option.
-                                            </p>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="tf-accordion-item">
-                                    <div class="accordion-header">
-                                        <h5 class="title collapsed" data-bs-toggle="collapse"
-                                            data-bs-target="#collapseSix" aria-expanded="false"
-                                            aria-controls="collapseSix">
-                                            How many therapy sessions will I need to see results?
-                                            <span class="icon"></span>
-                                        </h5>
-                                    </div>
-                                    <div id="collapseSix" class="accordion-collapse collapse"
-                                        data-bs-parent="#accordion">
-                                        <div class="tf-accordion-body">
-                                            <p>
-                                                Therapy is useful for managing stress, anxiety, or life challenges. It
-                                                offers
-                                                support and helps with personal growth. A consultation can help you
-                                                decide
-                                                if
-                                                it's the right option.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-            </section>
-            <!-- /.section-faq -->
-
-        </div>
-        <!-- /.main-content -->
+            <!-- /.section-gallery -->
 
 
 
