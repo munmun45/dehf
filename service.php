@@ -341,17 +341,7 @@
                                         </ul>
                                     </div>
                                 </form>
-                                <div class="list-service">
-                                    <h5>More Services</h5>
-                                    <ul>
-                                        <li><a href="#">Individual Counseling</a></li>
-                                        <li><a href="#">Family Therapy</a></li>
-                                        <li><a href="#">Couples Therapy</a></li>
-                                        <li><a href="#">Group Therapy</a></li>
-                                        <li><a href="#">Child & Adolescent Therapy</a></li>
-                                        <li><a href="#">Trauma Counseling</a></li>
-                                    </ul>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
