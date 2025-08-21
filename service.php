@@ -5,6 +5,81 @@
 
     <?php require("./config/meta.php"); ?>
 
+    <style>
+        .service-gallery {
+            margin-top: 40px;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .gallery-item .image-wrap {
+            position: relative;
+            overflow: hidden;
+            height: 200px;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-item .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gallery-item:hover .overlay {
+            opacity: 1;
+        }
+        
+        .gallery-item .overlay i {
+            color: white;
+            font-size: 24px;
+        }
+        
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 15px;
+            }
+            
+            .gallery-item .image-wrap {
+                height: 150px;
+            }
+        }
+    </style>
 
 </head>
 
@@ -27,16 +102,38 @@
 
 
         
+        <?php
+        // Include database connection
+        include './somaspanel/config/config.php';
+        
+        // Get service ID from URL parameter
+        $service_id = $_GET['id'] ?? 0;
+        
+        // Fetch service details
+        if ($service_id) {
+            $service_stmt = $conn->prepare("SELECT * FROM services WHERE id = ? AND status = 'active'");
+            $service_stmt->bind_param("i", $service_id);
+            $service_stmt->execute();
+            $service = $service_stmt->get_result()->fetch_assoc();
+        }
+        
+        // If no service found, redirect to services page
+        if (!$service) {
+            header('Location: index.php');
+            exit();
+        }
+        ?>
+        
         <!-- .page-title -->
         <div class="page-title">
             <div class="tf-container">
                 <div class="row">
                     <div class="col-12">
-                        <h3 class="title">Individual Counseling</h3>
+                        <h3 class="title"><?= htmlspecialchars($service['title']) ?></h3>
                         <ul class="breadcrumbs">
-                            <li><a href="index.html">Home</a></li>
+                            <li><a href="index.php">Home</a></li>
                             <li>Services</li>
-                            <li>Family Therapy</li>
+                            <li><?= htmlspecialchars($service['title']) ?></li>
                         </ul>
                     </div>
                 </div>
@@ -53,247 +150,164 @@
                     <div class="row">
                         <div class="col-lg-8">
                             <div class="content-inner">
+                                <?php if (!empty($service['main_image'])): ?>
                                 <div class="image-wrap">
-                                    <img class="lazyload" data-src="images/section/section-service-details.jpg"
-                                        src="images/section/section-service-details.jpg" alt="">
+                                    <img class="lazyload" data-src="somaspanel/<?= $service['main_image'] ?>"
+                                        src="./somaspanel/<?= $service['main_image'] ?>" alt="<?= htmlspecialchars($service['title']) ?>">
                                 </div>
+                                <?php endif; ?>
+                                <?php if (!empty($service['about_title']) || !empty($service['about_description'])): ?>
                                 <div class="heading">
-                                    <h4 class="mb-16">About Individual Counseling Services</h4>
-                                    <p class="text-1 lh-30">At Healingy, our Family Therapy services focus on improving
-                                        communication, resolving conflicts, and fostering stronger family relationships.
-                                        Our licensed therapists work with all members of the family to identify
-                                        underlying issues and create a supportive environment where everyone feels heard
-                                        and understood. Through tailored strategies, we help families navigate
-                                        challenges, strengthen bonds, and build a healthier, more harmonious home life.
-                                        Whether you're dealing with everyday struggles or complex dynamics, our family
-                                        therapy is designed to guide you toward lasting resolution and growth.</p>
+                                    <?php if (!empty($service['about_title'])): ?>
+                                        <h4 class="mb-16"><?= htmlspecialchars($service['about_title']) ?></h4>
+                                    <?php endif; ?>
+                                    <?php if (!empty($service['about_description'])): ?>
+                                        <p class="text-1 lh-30"><?= htmlspecialchars($service['about_description']) ?></p>
+                                    <?php endif; ?>
                                 </div>
+                                <?php endif; ?>
+                                <?php 
+                                // Check if service has benefits
+                                $has_benefits = false;
+                                if ($service_id) {
+                                    $benefits_check = $conn->query("SELECT COUNT(*) as count FROM service_benefits WHERE service_id = " . $service_id);
+                                    $has_benefits = $benefits_check->fetch_assoc()['count'] > 0;
+                                }
+                                if ($has_benefits): 
+                                ?>
                                 <div class="benefits">
+                                    <?php if (!empty($service['benefits_title']) || !empty($service['benefits_description'])): ?>
                                     <div class="heading">
-                                        <h4 class="mb-16">The Benefits They Have Gained From Using It</h4>
-                                        <p class="text-1 lh-30">Clients who have used Healingy's therapy services have
-                                            experienced reduced stress and anxiety, better communication, and stronger
-                                            relationships. They’ve gained self-awareness, resilience, and a renewed
-                                            sense of purpose. Our personalized approach ensures clients leave with the
-                                            tools they need for lasting emotional and mental well-being.</p>
+                                        <?php if (!empty($service['benefits_title'])): ?>
+                                            <h4 class="mb-16"><?= htmlspecialchars($service['benefits_title']) ?></h4>
+                                        <?php else: ?>
+                                            <h4 class="mb-16">Benefits</h4>
+                                        <?php endif; ?>
+                                        <?php if (!empty($service['benefits_description'])): ?>
+                                            <p class="text-1 lh-30"><?= htmlspecialchars($service['benefits_description']) ?></p>
+                                        <?php endif; ?>
                                     </div>
+                                    <?php else: ?>
+                                    <div class="heading">
+                                        <h4 class="mb-16">Benefits</h4>
+                                    </div>
+                                    <?php endif; ?>
                                     <div class="wrap-icons-box-list">
+                                        <?php
+                                        // Fetch benefits for this service
+                                        if ($service_id) {
+                                            $benefits_stmt = $conn->prepare("SELECT * FROM service_benefits WHERE service_id = ? ORDER BY sort_order ASC");
+                                            $benefits_stmt->bind_param("i", $service_id);
+                                            $benefits_stmt->execute();
+                                            $benefits_result = $benefits_stmt->get_result();
+                                            
+                                            while($benefit = $benefits_result->fetch_assoc()):
+                                        ?>
                                         <div class="icons-box-list effec-icon">
                                             <div class="icon">
-                                                <i class="icon-HandHeart
-                                                "></i>
+                                                <i class="<?= htmlspecialchars($benefit['icon_class']) ?>"></i>
                                             </div>
                                             <div class="content">
-                                                <h5 class="title"><a href="#">Personalized
-                                                        Care</a></h5>
-                                                <p class="text-1 lh-30">We create customized treatment plans tailored to
-                                                    your unique needs
-                                                    and goals,
-                                                    ensuring an
-                                                    approach that aligns with your personal journey toward healing and
-                                                    growth.</p>
-                                            </div>
-
-                                        </div>
-                                        <div class="icons-box-list effec-icon">
-                                            <div class="icon">
-                                                <i class="icon-SketchLogo
-                                                "></i>
-                                            </div>
-                                            <div class="content">
-                                                <h5 class="title"><a href="#">Experienced Professionals</a></h5>
-                                                <p class="text-1 lh-30">Our therapists offer extensive training &
-                                                    diverse expertise in
-                                                    various techniques,
-                                                    providing top-quality care and effective strategies tailored to your
-                                                    needs.</p>
-                                            </div>
-
-                                        </div>
-                                        <div class="icons-box-list effec-icon">
-                                            <div class="icon">
-                                                <i class="icon-Lifebuoy
-                                                "></i>
-                                            </div>
-                                            <div class="content">
-                                                <h5 class="title"><a href="#">Supportive Environment</a></h5>
-                                                <p class="text-1 lh-30">We offer a safe, compassionate space where you
-                                                    can feel comfortable
-                                                    and supported
-                                                    throughout your healing process, fostering positive and lasting
-                                                    change."</p>
+                                                <h5 class="title"><a href="#"><?= htmlspecialchars($benefit['title']) ?></a></h5>
+                                                <p class="text-1 lh-30"><?= htmlspecialchars($benefit['description']) ?></p>
                                             </div>
                                         </div>
+                                        <?php 
+                                            endwhile;
+                                        }
+                                        ?>
                                     </div>
                                 </div>
+                                <?php endif; ?>
+                                <?php 
+                                // Check if service has FAQs
+                                $has_faqs = false;
+                                if ($service_id) {
+                                    $faq_check = $conn->query("SELECT COUNT(*) as count FROM service_faqs WHERE service_id = " . $service_id);
+                                    $has_faqs = $faq_check->fetch_assoc()['count'] > 0;
+                                }
+                                if ($has_faqs): 
+                                ?>
                                 <div class="faq">
                                     <h4>Frequently Asked Questions?</h4>
                                     <div class="tf-accordion" id="accordion">
+                                        <?php
+                                        // Fetch FAQs for this service
+                                        if ($service_id) {
+                                            $faqs_stmt = $conn->prepare("SELECT * FROM service_faqs WHERE service_id = ? ORDER BY sort_order ASC");
+                                            $faqs_stmt->bind_param("i", $service_id);
+                                            $faqs_stmt->execute();
+                                            $faqs_result = $faqs_stmt->get_result();
+                                            
+                                            $faq_index = 0;
+                                            while($faq = $faqs_result->fetch_assoc()):
+                                                $faq_index++;
+                                        ?>
                                         <div class="tf-accordion-item">
                                             <div class="accordion-header">
                                                 <h5 class="title collapsed" data-bs-toggle="collapse"
-                                                    data-bs-target="#collapseOne" aria-expanded="true"
-                                                    aria-controls="collapseOne">
-                                                    What types of therapy do you offer at Healingy?
+                                                    data-bs-target="#collapse<?= $faq_index ?>" aria-expanded="<?= $faq_index == 1 ? 'true' : 'false' ?>"
+                                                    aria-controls="collapse<?= $faq_index ?>">
+                                                    <?= htmlspecialchars($faq['question']) ?>
                                                     <span class="icon"></span>
                                                 </h5>
                                             </div>
-                                            <div id="collapseOne" class="accordion-collapse collapse "
+                                            <div id="collapse<?= $faq_index ?>" class="accordion-collapse collapse <?= $faq_index == 1 ? 'show' : '' ?>"
                                                 data-bs-parent="#accordion">
                                                 <div class="tf-accordion-body">
-                                                    <p>
-                                                        Therapy is useful for managing stress, anxiety, or life
-                                                        challenges. It
-                                                        offers
-                                                        support and helps with personal growth. A consultation can help
-                                                        you
-                                                        decide
-                                                        if
-                                                        it's the right option.
-                                                    </p>
-
+                                                    <p><?= htmlspecialchars($faq['answer']) ?></p>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="tf-accordion-item">
-                                            <div class="accordion-header">
-                                                <h5 class=" title " data-bs-toggle="collapse"
-                                                    data-bs-target="#collapseTwo" aria-expanded="false"
-                                                    aria-controls="collapseTwo">
-                                                    How do I know if therapy is right for me?
-                                                    <span class="icon"></span>
-                                                </h5>
-                                            </div>
-                                            <div id="collapseTwo" class="accordion-collapse collapse show"
-                                                data-bs-parent="#accordion">
-                                                <div class="tf-accordion-body">
-                                                    <p>
-                                                        Therapy is useful for managing stress, anxiety, or life
-                                                        challenges. It
-                                                        offers
-                                                        support and helps with personal growth. A consultation can help
-                                                        you
-                                                        decide
-                                                        if
-                                                        it's the right option.
-                                                    </p>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="tf-accordion-item">
-                                            <div class="accordion-header">
-                                                <h5 class="title collapsed" data-bs-toggle="collapse"
-                                                    data-bs-target="#collapseThree" aria-expanded="false"
-                                                    aria-controls="collapseThree">
-                                                    What should I expect during my first therapy session?
-                                                    <span class="icon"></span>
-                                                </h5>
-                                            </div>
-                                            <div id="collapseThree" class="accordion-collapse collapse"
-                                                data-bs-parent="#accordion">
-                                                <div class="tf-accordion-body">
-                                                    <p>
-                                                        Therapy is useful for managing stress, anxiety, or life
-                                                        challenges. It
-                                                        offers
-                                                        support and helps with personal growth. A consultation can help
-                                                        you
-                                                        decide
-                                                        if
-                                                        it's the right option.
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="tf-accordion-item">
-                                            <div class="accordion-header">
-                                                <h5 class="title collapsed" data-bs-toggle="collapse"
-                                                    data-bs-target="#collapseSix" aria-expanded="false"
-                                                    aria-controls="collapseSix">
-                                                    How many therapy sessions will I need to see results?
-                                                    <span class="icon"></span>
-                                                </h5>
-                                            </div>
-                                            <div id="collapseSix" class="accordion-collapse collapse"
-                                                data-bs-parent="#accordion">
-                                                <div class="tf-accordion-body">
-                                                    <p>
-                                                        Therapy is useful for managing stress, anxiety, or life
-                                                        challenges. It
-                                                        offers
-                                                        support and helps with personal growth. A consultation can help
-                                                        you
-                                                        decide
-                                                        if
-                                                        it's the right option.
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <?php 
+                                            endwhile;
+                                        }
+                                        ?>
                                     </div>
                                 </div>
-                                <div class="therapists">
-                                    <h4>Expert Therapists</h4>
-                                    <div class="wrap-team">
-                                        <div class="team-item hover-img">
-                                            <div class="image-wrap ">
-                                                <a href="therapists-details.html">
-
-                                                    <img class="lazyload" data-src="images/section/team-item-2.jpg"
-                                                        src="images/section/team-item-2.jpg" alt="">
+                                <?php endif; ?>
+                                <?php 
+                                // Check if service has gallery images
+                                $has_gallery = false;
+                                if ($service_id) {
+                                    $gallery_check = $conn->query("SELECT COUNT(*) as count FROM service_images WHERE service_id = " . $service_id);
+                                    $has_gallery = $gallery_check->fetch_assoc()['count'] > 0;
+                                }
+                                if ($has_gallery): 
+                                ?>
+                                <div class="service-gallery">
+                                    <h4>Service Gallery</h4>
+                                    <div class="gallery-grid">
+                                        <?php
+                                        // Fetch service gallery images
+                                        if ($service_id) {
+                                            $gallery_stmt = $conn->prepare("SELECT * FROM service_images WHERE service_id = ? ORDER BY sort_order ASC");
+                                            $gallery_stmt->bind_param("i", $service_id);
+                                            $gallery_stmt->execute();
+                                            $gallery_result = $gallery_stmt->get_result();
+                                            
+                                            while($gallery_image = $gallery_result->fetch_assoc()):
+                                        ?>
+                                        <div class="gallery-item">
+                                            <div class="image-wrap hover-img">
+                                                <a href="somaspanel/<?= htmlspecialchars($gallery_image['image_path']) ?>" data-lightbox="service-gallery">
+                                                    <img class="lazyload" 
+                                                         data-src="somaspanel/<?= htmlspecialchars($gallery_image['image_path']) ?>"
+                                                         src="somaspanel/<?= htmlspecialchars($gallery_image['image_path']) ?>" 
+                                                         alt="<?= htmlspecialchars($service['title']) ?> Gallery">
+                                                    <div class="overlay">
+                                                        <i class="icon-search"></i>
+                                                    </div>
                                                 </a>
                                             </div>
-                                            <div class="info">
-                                                <h5 class="name"><a href="#">Michael Carter</a></h5>
-                                                <p class="text-2">Family Therapist</p>
-                                            </div>
-                                            <ul class="tf-social style-1">
-                                                <li><a href="#">
-                                                        <i class="icon-FacebookLogo"></i>
-                                                    </a>
-                                                </li>
-                                                <li><a href="#">
-                                                        <i class="icon-x"></i>
-                                                    </a></li>
-                                                <li><a href="#">
-                                                        <i class="icon-LinkedinLogo"></i>
-                                                    </a></li>
-                                                <li><a href="#">
-                                                        <i class="icon-instagram"></i>
-                                                    </a></li>
-                                            </ul>
                                         </div>
-                                        <div class="team-item hover-img">
-                                            <div class="image-wrap ">
-                                                <a href="therapists-details.html">
-
-                                                    <img class="lazyload" data-src="images/section/team-item-3.jpg"
-                                                        src="images/section/team-item-3.jpg" alt="">
-                                                </a>
-                                            </div>
-                                            <div class="info">
-                                                <h5 class="name"><a href="#">Sarah Martinez</a></h5>
-                                                <p class="text-2">Child & Adolescent Therapist</p>
-                                            </div>
-                                            <ul class="tf-social style-1">
-                                                <li><a href="#">
-                                                        <i class="icon-FacebookLogo"></i>
-                                                    </a>
-                                                </li>
-                                                <li><a href="#">
-                                                        <i class="icon-x"></i>
-                                                    </a></li>
-                                                <li><a href="#">
-                                                        <i class="icon-LinkedinLogo"></i>
-                                                    </a></li>
-                                                <li><a href="#">
-                                                        <i class="icon-instagram"></i>
-                                                    </a></li>
-                                            </ul>
-                                        </div>
+                                        <?php 
+                                            endwhile;
+                                        }
+                                        ?>
                                     </div>
                                 </div>
+                                <?php endif; ?>
                             </div>
                         </div>
                         <div class="col-lg-4">

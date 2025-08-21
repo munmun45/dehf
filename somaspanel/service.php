@@ -438,6 +438,40 @@
   </div>
 
   <script>
+    // Add Service Form Handler
+    document.getElementById('addServiceForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const formData = new FormData(this);
+      const submitBtn = this.querySelector('button[type="submit"]');
+      const originalText = submitBtn.innerHTML;
+      
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Saving...';
+      
+      fetch('./process/add_service.php', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          alert('Service added successfully!');
+          location.reload();
+        } else {
+          alert('Error: ' + data.message);
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred while adding the service.');
+      })
+      .finally(() => {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalText;
+      });
+    });
+
     // Edit Service Function
     function editService(serviceId) {
       // Get service data and populate edit form

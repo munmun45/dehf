@@ -57,7 +57,7 @@
 
 
                                 <li class="has-child ">
-                                    <a href="our-service.html">Services</a>
+                                    <a href="#0">Services</a>
                                     <div class="sub-menu service-link">
                                         <div class="tf-container">
                                             <div class="row">
@@ -68,47 +68,34 @@
                                                             </h5>
                                                             <div class="wrap-service">
 
-                                                                <a class="service-item-list" href="./service.php">
-                                                                    <h6>Family
-                                                                            Therapy</h6>
+                                                                <?php
+                                                                // Include database connection
+                                                                include './somaspanel/config/config.php';
+                                                                
+                                                                // Fetch active services from database
+                                                                $services_query = "SELECT id, title, slug, about_description FROM services WHERE status = 'active' ORDER BY created_at DESC LIMIT 6";
+                                                                $services_result = $conn->query($services_query);
+                                                                
+                                                                if ($services_result && $services_result->num_rows > 0):
+                                                                    while($service = $services_result->fetch_assoc()):
+                                                                ?>
+                                                                <a class="service-item-list" href="./service.php?id=<?= $service['id'] ?>">
+                                                                    <h6><?= htmlspecialchars($service['title']) ?></h6>
                                                                     <p class="text-2">
-                                                                        Improve family relationships, resolve
-                                                                        conflicts, and build a healthy living
-                                                                        environment.
+                                                                        <?= htmlspecialchars(substr($service['about_description'], 0, 120)) ?>...
                                                                     </p>
                                                                 </a>
-                                                                
-
-                                                                <a class="service-item-list" href="./service.php">
-                                                                    <h6>Family
-                                                                            Therapy</h6>
+                                                                <?php 
+                                                                    endwhile;
+                                                                else:
+                                                                ?>
+                                                                <a class="service-item-list" href="#0">
+                                                                    <h6>No Services Available</h6>
                                                                     <p class="text-2">
-                                                                        Improve family relationships, resolve
-                                                                        conflicts, and build a healthy living
-                                                                        environment.
+                                                                        Please add services from the admin panel.
                                                                     </p>
                                                                 </a>
-                                                                
-                                                                <a class="service-item-list" href="./service.php">
-                                                                    <h6>Family
-                                                                            Therapy</h6>
-                                                                    <p class="text-2">
-                                                                        Improve family relationships, resolve
-                                                                        conflicts, and build a healthy living
-                                                                        environment.
-                                                                    </p>
-                                                                </a>
-                                                                
-                                                                <a class="service-item-list" href="./service.php">
-                                                                    <h6>Family
-                                                                            Therapy</h6>
-                                                                    <p class="text-2">
-                                                                        Improve family relationships, resolve
-                                                                        conflicts, and build a healthy living
-                                                                        environment.
-                                                                    </p>
-                                                                </a>
-                                                                
+                                                                <?php endif; ?>
 
                                                              
 
@@ -213,12 +200,25 @@
                         </a>
                         <div id="dropdown-menu-two" class="collapse" data-bs-parent="#menu-mobile-menu">
                             <ul class="sub-mobile">
+                                <?php
+                                // Fetch active services for mobile menu
+                                $mobile_services_query = "SELECT id, title FROM services WHERE status = 'active' ORDER BY created_at DESC";
+                                $mobile_services_result = $conn->query($mobile_services_query);
+                                
+                                if ($mobile_services_result && $mobile_services_result->num_rows > 0):
+                                    while($mobile_service = $mobile_services_result->fetch_assoc()):
+                                ?>
                                 <li class="menu-item">
-                                    <a href="service.php">Our Service</a>
+                                    <a href="service.php?id=<?= $mobile_service['id'] ?>"><?= htmlspecialchars($mobile_service['title']) ?></a>
                                 </li>
+                                <?php 
+                                    endwhile;
+                                else:
+                                ?>
                                 <li class="menu-item">
-                                    <a href="service.php">Service Details</a>
+                                    <a href="service.php">No Services Available</a>
                                 </li>
+                                <?php endif; ?>
                             </ul>
                         </div>
                     </li>
