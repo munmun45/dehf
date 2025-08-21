@@ -1,3 +1,12 @@
+<style>
+/* Responsive logo styles */
+@media (max-width: 768px) {
+    #logo_header {
+        width: 170px !important;
+        padding: 15px 0px !important;
+    }
+}
+</style>
 
 <div id="loading">
     <div id="loading-center">
@@ -24,13 +33,13 @@
                         <div class="header-logo">
                             <a href="index.html" class="site-logo">
                                 <img id="logo_header" alt="" src="images/logo/logo-white.png"
-                                    data-retina="images/logo/logo-white@2x.png" style="width: 330px;" >
+                                    style="width: 330px;" >
                             </a>
                         </div>
                         <div class="header-logo-2">
                             <a href="index.html" class="site-logo">
                                 <img id="logo_header" alt="" src="images/logo/logo.png"
-                                    data-retina="images/logo/logo@2x.png" style="width: 330px;" >
+                                     style="width: 330px;" >
                             </a>
                         </div>
                         <nav class="main-menu">
@@ -129,45 +138,7 @@
                             </ul>
                         </nav>
                         <div class="header-right">
-                            <div class="group-btn">
-                                <a class="btn-find" href="#canvasSearch" data-bs-toggle="offcanvas">
-                                    <div class="icon">
-                                        <i class="icon-MagnifyingGlass"></i>
-                                    </div>
-                                </a>
-                                <a href="shop-cart.html" class="btn-shop-bag">
-                                    <div class="icon">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <g clip-path="url(#clip0_10985_955)">
-                                                <g clip-path="url(#clip1_10985_955)">
-                                                    <path
-                                                        d="M20.0547 4.13965H3.55469C3.14047 4.13965 2.80469 4.47543 2.80469 4.88965V18.3896C2.80469 18.8039 3.14047 19.1396 3.55469 19.1396H20.0547C20.4689 19.1396 20.8047 18.8039 20.8047 18.3896V4.88965C20.8047 4.47543 20.4689 4.13965 20.0547 4.13965Z"
-                                                        stroke="#3C210E" stroke-width="1.5"
-                                                        stroke-linecap="round" stroke-linejoin="round" />
-                                                    <path d="M2.80469 7.13965H20.8047" stroke="#3C210E"
-                                                        stroke-width="1.5" stroke-linecap="round"
-                                                        stroke-linejoin="round" />
-                                                    <path
-                                                        d="M15.5547 10.1396C15.5547 11.1342 15.1596 12.088 14.4563 12.7913C13.7531 13.4946 12.7992 13.8896 11.8047 13.8896C10.8101 13.8896 9.8563 13.4946 9.15304 12.7913C8.44978 12.088 8.05469 11.1342 8.05469 10.1396"
-                                                        stroke="#3C210E" stroke-width="1.5"
-                                                        stroke-linecap="round" stroke-linejoin="round" />
-                                                </g>
-                                            </g>
-                                            <defs>
-                                                <clipPath id="clip0_10985_955">
-                                                    <rect width="24" height="24" fill="white" />
-                                                </clipPath>
-                                                <clipPath id="clip1_10985_955">
-                                                    <rect width="24" height="24" fill="white"
-                                                        transform="translate(-0.195312 -0.360352)" />
-                                                </clipPath>
-                                            </defs>
-                                        </svg>
-                                    </div>
-                                    <span>2</span>
-                                </a>
-                            </div>
+                            
                             <div class="btn-get">
                                 <a class="tf-btn style-default btn-color-secondary pd-40"
                                     href="./appointment.php">
