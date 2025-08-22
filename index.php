@@ -98,75 +98,24 @@
                                     <div class="heading-section text-start ">
                                         <p class="text-2 sub wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">
                                             About Divine Energy Healing Foundation</p>
-                                        <h3 class="wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">Trusted
-                                            astrologers dedicated to your spiritual journey
+                                        <h3 class="wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">Your trusted partner dedicated to your
+                                        material, spiritual and mental well-being.
                                         </h3>
                                         <p class="description text-1 lh-30 wow fadeInUp" data-wow-duration="1000"
-                                            data-wow-delay="0s">Divine Energy Healing Foundation is a renowned center for
-                                            past life astrology and spiritual healing, with experienced practitioners ready to
-                                            guide and illuminate your path. We believe that everyone has the ability to heal and
-                                            transform through understanding their soul's journey.
+                                            data-wow-delay="0s">The Divine Energy Healing Foundation is a distinguished center offering Past Life Regression Therapy, Clinical Hypnotherapy, Reiki & Thita healing, astrology, and meditation, led by certified and experienced practitioners dedicated to guiding and illuminating your path. We provide counseling services for career development, relationship and marital life, and finance-related issues. We firmly believe that everyone possesses the innate ability to heal and transform through a deeper understanding of their soul's journey.
+                                        </p>
+                                        <p class="description text-1 lh-30 wow fadeInUp" data-wow-duration="1000"
+                                            data-wow-delay="0s">We also address cases involving mental trauma, anxiety, nervousness, phobias, insomnia, lack of confidence, chronic health issues, and detrimental habits such as drinking and smoking. Our guidance enables individuals to overcome these shortcomings and achieve a successful, mentally, spiritually, and financially stable future.
                                         </p>
                                     </div>
-                                    <div class="wrap-counter layout-2">
-                                        <div class="counter-item has-icon">
-                                            <div class="icon">
-                                                <i class="icon-SketchLogo"></i>
-                                            </div>
-                                            <div class="count">
-                                                <div class="counter-number">
-                                                    <div class="odometer style-1-1">0
-                                                    </div>
-                                                    <span class="sub">Years</span>
-                                                </div>
-                                                <p>Years of Experience</p>
-                                            </div>
-                                        </div>
-                                        <div class="counter-item has-icon">
-                                            <div class="icon">
-                                                <i class="icon-Smiley"></i>
-                                            </div>
-                                            <div class="count">
-                                                <div class="counter-number">
-                                                    <div class="odometer style-1-2">0
-                                                    </div>
-                                                    <span class="sub">k</span>
-                                                </div>
-                                                <p>Happy customers</p>
-                                            </div>
-                                        </div>
-                                        <div class="counter-item has-icon">
-                                            <div class="icon">
-                                                <i class="icon-HandHeart"></i>
-                                            </div>
-                                            <div class="count">
-                                                <div class="counter-number">
-                                                    <div class="odometer style-1-3">10
-                                                    </div>
-                                                </div>
-                                                <p>Astrology Readings</p>
-                                            </div>
-                                        </div>
-                                        <div class="counter-item has-icon">
-                                            <div class="icon">
-                                                <i class="icon-Certificate"></i>
-                                            </div>
-                                            <div class="count">
-                                                <div class="counter-number">
-                                                    <div class="odometer style-1-4">0
-                                                    </div>
-                                                </div>
-                                                <p>Awards Winner</p>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
                                 </div>
                             </div>
                             <div class="col-md-6 col-xl-5 offset-xl-1 offset-0">
                                 <div class="image-wrap wow fadeInRight effec-overlay" data-wow-duration="1000"
                                     data-wow-delay="0s">
-                                    <img class="lazyload" data-src="images/section/section-benefit.jpg"
-                                        src="images/section/section-benefit.jpg" alt="">
+                                    <img class="lazyload" data-src="images/section/section-benefit_123.jpg"
+                                        src="images/section/section-benefit_123.jpg" alt="">
                                 </div>
                             </div>
                         </div>
@@ -341,6 +290,18 @@
                                         <h5 class="title"> <a href="#">Spiritual Guidance</a></h5>
                                         <p>We'll provide continuous spiritual guidance, energy healing support, and
                                             ongoing insights to help you on your soul's journey.</p>
+                                    </div>
+                                </div>
+                                <div class="process-item style-no-line style-has-icon effec-icon wow fadeInRight"
+                                    data-wow-duration="1000" data-wow-delay="0s">
+                                    <div class="item">
+                                        <i class="icon-FlowerLotus"></i>
+                                        <span class="number">5</span>
+                                    </div>
+                                    <div class="content">
+                                        <h5 class="title"><a href="#">Counseling</a></h5>
+                                        <p>Discover the benefits of hypnotherapy counseling designed to reduce stress, release limiting beliefs, and
+                                        empower positive change in your life.</p>
                                     </div>
                                 </div>
                             </div>

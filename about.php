@@ -50,7 +50,7 @@
                         <div class="col-12 ">
                             <div class="heading-section  ">
                                 <h2 class="wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">Welcome to Divine Energy Healing Foundation</h2>
-                                <p class="description text-1 lh-30 wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">We are a trusted spiritual healing center, guided by experienced past life astrologers and energy healers dedicated to uncovering your soul's journey. <br> We believe in everyone's potential to heal and transform through understanding their karmic patterns and past life connections.</p>
+                                <p class="description text-1 lh-30 wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">We are a trusted spiritual healing center, guided by experienced past life regression therapist, clinical hypnotherapy and energy healers dedicated to uncovering your soul's journey. <br> We believe in everyone's potential to heal and transform through understanding their karmic patterns and past life connections.</p>
                             </div>
                             <div class="box-about">
                                 <div class="image-wrap wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">
@@ -60,62 +60,15 @@
                                     <div class="item wow fadeInLeft" data-wow-duration="1000" data-wow-delay="0s">
                                         <h3>Our Mission</h3>
                                         <p>At Divine Energy Healing Foundation, our mission is to provide compassionate, personalized spiritual healing that helps individuals understand their soul's journey and overcome karmic challenges. We are committed to creating a sacred, supportive space for healing and spiritual growth, using ancient wisdom and past life regression to guide clients toward soul awakening.</p>
-                                        <p>Our team of experienced past life astrologers and energy healers works with each client to uncover karmic patterns and soul connections. We aim to equip individuals with the spiritual tools they need to heal past life traumas, understand their life purpose, and create positive karmic transformation.</p>
+                                        <p>Our team of experienced past life regression therapist, clinical hypnotherapy and energy healers works with each client to uncover karmic patterns and soul connections. We aim to equip individuals with the spiritual tools they need to heal past life traumas, understand their life purpose, and create positive karmic transformation.</p>
                                     </div>
                                     <div class="item wow fadeInRight" data-wow-duration="1000" data-wow-delay="0s">
                                         <h3>Our Vision</h3>
-                                        <p>Our vision is to be a leading center for spiritual healing and past life astrology, where everyone has access to divine wisdom and soul guidance they need. We strive to create a world where spiritual healing is embraced, free from judgment, and where people feel empowered to explore their soul's journey.</p>
-                                        <p>We aim to build a spiritual community where seeking past life healing is encouraged and supported. By promoting spiritual awareness and providing authentic astrological guidance, we hope to make a lasting positive impact on the souls of our clients.</p>
+                                        <p>Our vision is to be a leading center for spiritual healing and past life regression, where everyone has access to divine wisdom and soul guidance they need. We strive to create a world where spiritual healing is embraced, free from judgment, and where people feel empowered to explore their soul's journey.</p>
+                                        <p>We aim to build a spiritual community where seeking past life healing is encouraged and supported. By promoting spiritual awareness and providing authentic astrological and spiritual guidance, we hope to make a lasting positive impact on the souls of our clients.</p>
                                     </div>
                                 </div>
-                                <div class="wrap-counter">
-                                    <div class="counter-item has-icon">
-                                        <div class="icon">
-                                            <i class="icon-SketchLogo"></i>
-                                        </div>
-                                        <div class="count">
-                                            <div class="counter-number">
-                                                <div class="odometer style-1-1">0</div>
-                                                <span class="sub">Years</span>
-                                            </div>
-                                            <p>Years of Experience</p>
-                                        </div>
-                                    </div>
-                                    <div class="counter-item has-icon">
-                                        <div class="icon">
-                                            <i class="icon-Smiley"></i>
-                                        </div>
-                                        <div class="count">
-                                            <div class="counter-number">
-                                                <div class="odometer style-1-2">0</div>
-                                                <span class="sub">k</span>
-                                            </div>
-                                            <p>Souls Healed</p>
-                                        </div>
-                                    </div>
-                                    <div class="counter-item has-icon">
-                                        <div class="icon">
-                                            <i class="icon-HandHeart"></i>
-                                        </div>
-                                        <div class="count">
-                                            <div class="counter-number">
-                                                <div class="odometer style-1-3">10</div>
-                                            </div>
-                                            <p>Past Life Readings</p>
-                                        </div>
-                                    </div>
-                                    <div class="counter-item has-icon">
-                                        <div class="icon">
-                                            <i class="icon-Certificate"></i>
-                                        </div>
-                                        <div class="count">
-                                            <div class="counter-number">
-                                                <div class="odometer style-1-4">0</div>
-                                            </div>
-                                            <p>Years of Spiritual Practice</p>
-                                        </div>
-                                    </div>
-                                </div>
+                                
                             </div>
                         </div>
 
@@ -138,7 +91,7 @@
                                     <div class="heading-section text-start wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">
                                         <p class="text-2 sub wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">BEGIN YOUR SOUL'S JOURNEY</p>
                                         <h3 class="wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">Discover Your Past Lives and Transform Your Destiny</h3>
-                                        <p class="description text-1 lh-30 wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">We offer compassionate, personalized past life astrology readings to uncover your soul's karmic patterns. We are committed to working with you to reveal your past life connections and guide your spiritual evolution. Let's take the first step towards understanding your soul's purpose.</p>
+                                        <p class="description text-1 lh-30 wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">We offer compassionate, personalized past life therapy readings to uncover your soul's karmic patterns. We are committed to working with you to reveal your past life connections and guide your spiritual evolution. Let's take the first step towards understanding your soul's purpose.</p>
                                     </div>
                                     <a class="tf-btn style-default btn-color-secondary pd-28 wow fadeInUp " data-wow-duration="1000" data-wow-delay="0s" href="appointment.php">
                                         <span>Book a Past Life Reading <i class="icon-ArrowRight arr-1"></i></span>
