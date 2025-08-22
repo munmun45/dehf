@@ -345,15 +345,7 @@
                                             Submit
                                         </span>
                                     </button>
-                                    <div class="info">
-                                        <h5>Infomation</h5>
-                                        <ul class="list-info">
-                                            <li><i class="icon-Envelope"></i> <a href="#">themesflat@gmail.com</a></li>
-                                            <li><i class="icon-PhoneCall"></i>1-333-345-6868</li>
-                                            <li><i class="icon-MapPin"></i>101 E 129th St, East Chicago, IN 46312, US
-                                            </li>
-                                        </ul>
-                                    </div>
+                                    
                                 </form>
                                 
                             </div>
