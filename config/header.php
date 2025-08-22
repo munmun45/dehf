@@ -25,7 +25,7 @@
 
 <!-- .header -->
 <header id="header-main" class="header header-style-absolute header-default">
-    <div class="header-inner">
+    <div class="header-inner" style="background-color: #00000073;">
         <div class="tf-container">
             <div class="row">
                 <div class="col-12">
